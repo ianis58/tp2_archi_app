@@ -5,7 +5,7 @@
   <body>
     <%@ include file="template/menu.jsp"%>
     
-    <div class="container body-content">
+    <div class="container body-content form-horizontal well">
         <p> ceci est un test</p>
     </div>
     
