@@ -12,6 +12,10 @@
         <action name="index">
             <result>pages/index.jsp</result>
         </action>
+        <action name="login" class="ca.uqac.archi.action.LoginAction">
+            <result name="success">pages/accueil.jsp</result>
+            <result name="input">pages/index.jsp</result>
+        </action>
     </package>
 
 </struts>

@@ -11,8 +11,8 @@
         <property name="marqueIdMarque" type="int">
             <column name="MarqueIdMarque" not-null="true" />
         </property>
-        <property name="ann&#233;e" type="int">
-            <column name="Ann&#233;e" not-null="true" />
+        <property name="annee" type="int">
+            <column name="Annee" not-null="true" />
         </property>
         <property name="libelleVehicule" type="string">
             <column name="LibelleVehicule" />
