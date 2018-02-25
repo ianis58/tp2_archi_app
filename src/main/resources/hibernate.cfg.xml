@@ -45,5 +45,22 @@ Contributor(s):
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/aaetp?zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.username">root</property>
+    <mapping resource="ca/uqac/archi/model/Employe.hbm.xml"/>
+    <mapping resource="ca/uqac/archi/model/Stock.hbm.xml"/>
+    <mapping resource="ca/uqac/archi/model/Commande.hbm.xml"/>
+    <mapping resource="ca/uqac/archi/model/Lignecommande.hbm.xml"/>
+    <mapping resource="ca/uqac/archi/model/Categorie.hbm.xml"/>
+    <mapping resource="ca/uqac/archi/model/Emplacement.hbm.xml"/>
+    <mapping resource="ca/uqac/archi/model/SouscategorieArticle.hbm.xml"/>
+    <mapping resource="ca/uqac/archi/model/StockArticle.hbm.xml"/>
+    <mapping resource="ca/uqac/archi/model/Article.hbm.xml"/>
+    <mapping resource="ca/uqac/archi/model/Facture.hbm.xml"/>
+    <mapping resource="ca/uqac/archi/model/Vehicule.hbm.xml"/>
+    <mapping resource="ca/uqac/archi/model/Marque.hbm.xml"/>
+    <mapping resource="ca/uqac/archi/model/SouscategorieCategorie.hbm.xml"/>
+    <mapping resource="ca/uqac/archi/model/Livraison.hbm.xml"/>
+    <mapping resource="ca/uqac/archi/model/Souscategorie.hbm.xml"/>
+    <mapping resource="ca/uqac/archi/model/VehiculeArticle.hbm.xml"/>
+    <mapping resource="ca/uqac/archi/model/Fournisseur.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>
