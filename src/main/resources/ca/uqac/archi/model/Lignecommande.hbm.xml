@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 24 f?vr. 2018 20:24:00 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="ca.uqac.archi.model.Lignecommande" table="lignecommande" catalog="aaetp" optimistic-lock="version">
+        <id name="idLigneCommande" type="java.lang.Integer">
+            <column name="IdLigneCommande" />
+            <generator class="identity" />
+        </id>
+        <property name="articleIdArticle" type="int">
+            <column name="ArticleIdArticle" not-null="true" />
+        </property>
+        <property name="commandeIdCommande" type="int">
+            <column name="CommandeIdCommande" not-null="true" />
+        </property>
+        <property name="quantite" type="int">
+            <column name="Quantite" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

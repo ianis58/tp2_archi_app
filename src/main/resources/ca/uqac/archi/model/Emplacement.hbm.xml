@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 24 f?vr. 2018 20:24:00 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="ca.uqac.archi.model.Emplacement" table="emplacement" catalog="aaetp" optimistic-lock="version">
+        <id name="idEmplacement" type="java.lang.Integer">
+            <column name="IdEmplacement" />
+            <generator class="identity" />
+        </id>
+        <property name="stockIdStock" type="int">
+            <column name="StockIdStock" not-null="true" />
+        </property>
+        <property name="allee" type="string">
+            <column name="Allee" />
+        </property>
+        <property name="rangee" type="string">
+            <column name="Rangee" />
+        </property>
+        <property name="etage" type="string">
+            <column name="Etage" />
+        </property>
+    </class>
+</hibernate-mapping>

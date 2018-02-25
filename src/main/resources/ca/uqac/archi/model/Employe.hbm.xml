@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 24 f?vr. 2018 20:24:00 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="ca.uqac.archi.model.Employe" table="employe" catalog="aaetp" optimistic-lock="version">
+        <id name="idPersonne" type="java.lang.Integer">
+            <column name="IdPersonne" />
+            <generator class="identity" />
+        </id>
+        <property name="adresse" type="string">
+            <column name="Adresse" />
+        </property>
+        <property name="password" type="string">
+            <column name="Password" />
+        </property>
+        <property name="isAdmin" type="boolean">
+            <column name="IsAdmin" not-null="true" />
+        </property>
+        <property name="nom" type="string">
+            <column name="Nom" />
+        </property>
+        <property name="prenom" type="string">
+            <column name="Prenom" />
+        </property>
+        <property name="telephone" type="string">
+            <column name="Telephone" />
+        </property>
+        <property name="mail" type="string">
+            <column name="Mail" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 24 f?vr. 2018 20:24:00 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="ca.uqac.archi.model.Article" table="article" catalog="aaetp" optimistic-lock="version">
+        <id name="idArticle" type="java.lang.Integer">
+            <column name="IdArticle" />
+            <generator class="identity" />
+        </id>
+        <property name="marqueIdMarque" type="int">
+            <column name="MarqueIdMarque" not-null="true" />
+        </property>
+        <property name="nom" type="string">
+            <column name="Nom" />
+        </property>
+        <property name="reference" type="string">
+            <column name="Reference" />
+        </property>
+        <property name="prix" type="float">
+            <column name="Prix" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="description" type="string">
+            <column name="Description" />
+        </property>
+        <property name="discriminator" type="string">
+            <column name="Discriminator" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
