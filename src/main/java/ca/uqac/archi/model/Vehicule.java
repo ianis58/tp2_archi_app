@@ -1,5 +1,5 @@
 package ca.uqac.archi.model;
-// Generated 24 f�vr. 2018 20:23:59 by Hibernate Tools 4.3.1
+// Generated 24 fevr. 2018 20:23:59 by Hibernate Tools 4.3.1
 
 
 import javax.persistence.Column;
