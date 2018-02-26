@@ -1,6 +1,6 @@
-<!DOCTYPE html>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
-<%@ taglib uri="/struts-tags" prefix="s" %>
+<!DOCTYPE html>
 <html>
     <head>
         <%@ include file="template/head.jsp" %>
@@ -9,7 +9,7 @@
         <%@ include file="template/nav.jsp" %>
 
         <div class="container body-content form-horizontal well">
-            <b>Bienvenue, <s:property value="user.nom"/></b>
+            <b>Bienvenue, <s:property value="user.mail"/></b>
         </div>
 
         <%@ include file="template/footer.jsp" %>
