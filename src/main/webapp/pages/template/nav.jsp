@@ -10,6 +10,9 @@
             <li class='nav-item <s:if test="action == \"managearticles\"">active</s:if>'>
                 <a class="nav-link" href="#">Articles</a>
             </li>
+            <li class='nav-item <s:if test="action == \"categorieCRUD\"">active</s:if>'>
+                <a class="nav-link" href="categorieCRUD">Catégories</a>
+            </li>
             <li class='nav-item <s:if test="action == \"manageusers\"">active</s:if>'>
                 <a class="nav-link" href="manageusers">Utilisateurs</a>
             </li>
