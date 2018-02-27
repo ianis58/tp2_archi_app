@@ -19,6 +19,16 @@
         <action name="manageusers" class="ca.uqac.archi.action.ManageUsersAction">
             <result>pages/manageusers.jsp</result>
         </action>
+        <action name="categorieCRUD" class="ca.uqac.archi.action.CategorieAction">
+            <result>pages/categorieCRUD.jsp</result>
+        </action>
+        
+        <!-- Action list for category -->
+        <action name="addCategorie"  
+            class="ca.uqac.archi.action.CategorieAction" method="add">  
+            <result name="success" type="chain">categorieCRUD</result>  
+            <result name="input" type="chain">categorieCRUD</result>  
+        </action>  
     </package>
 
 </struts>

@@ -11,6 +11,9 @@
                 <a class="nav-link" href="#">Articles</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="categorieCRUD">Catégories</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="manageusers">Utilisateurs</a>
             </li>
             <li class="nav-item">
