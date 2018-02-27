@@ -16,11 +16,32 @@ import java.util.List;
  */
 public class ManageUsersAction extends ActionSupport {
     
-    List<Employe> listEmployees;
+    private String action;
+    private List<Employe> listEmployees;
     
     @Override
     public String execute() {
+        action = "manageusers";
         listEmployees = new EmployeDAO().getAllEmployees();
         return SUCCESS;
     }
+
+    public List<Employe> getListEmployees() {
+        return listEmployees;
+    }
+
+    public void setListEmployees(List<Employe> listEmployees) {
+        this.listEmployees = listEmployees;
+    }
+
+    public String getAction() {
+        return action;
+    }
+
+    public void setAction(String action) {
+        this.action = action;
+    }
+    
+    
+    
 }

@@ -7,13 +7,13 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <!--add class "active" to make this item selected: <li class="nav-item active">-->
-            <li class="nav-item">
+            <li class='nav-item <s:if test="action == \"managearticles\"">active</s:if>'>
                 <a class="nav-link" href="#">Articles</a>
             </li>
-            <li class="nav-item">
+            <li class='nav-item <s:if test="action == \"manageusers\"">active</s:if>'>
                 <a class="nav-link" href="manageusers">Utilisateurs</a>
             </li>
-            <li class="nav-item">
+            <li class='nav-item <s:if test="action == \"search\"">active</s:if>'>
                 <a class="nav-link" href="#">Recherches</a>
             </li>
         </ul>
@@ -22,5 +22,10 @@
                 Bonjour,  <s:property value="user.prenom"/> <s:property value="user.nom"/>!
             </span>
         </s:if>
+        <s:else>
+            <form class="form-inline my-2 my-lg-0" action="index" method="POST">
+                <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Connexion</button>
+            </form>
+        </s:else>
     </div>
 </nav>
