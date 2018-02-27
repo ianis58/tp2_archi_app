@@ -18,7 +18,6 @@ import javax.persistence.Table;
 )
 public class Employe  implements java.io.Serializable {
 
-
      private Integer idPersonne;
      private String adresse;
      private String password;
@@ -127,8 +126,20 @@ public class Employe  implements java.io.Serializable {
         this.mail = mail;
     }
 
-
-
+    public String toString(){
+        String employeString;
+        
+        employeString = this.idPersonne + " " +
+                        this.adresse + " " +
+                        this.mail + " " +
+                        this.password + " " +
+                        this.nom + " " +
+                        this.prenom + " " +
+                        this.telephone + " " +
+                        this.isAdmin;
+        
+        return employeString;
+    }
 
 }
 

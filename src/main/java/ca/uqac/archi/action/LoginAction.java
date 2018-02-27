@@ -31,7 +31,8 @@ public class LoginAction extends ActionSupport {
  
     @Override
     public String execute() {
-        if (dao.find(user.getMail(), user.getPassword())) {
+        user = dao.find(user.getMail(), user.getPassword());
+        if (!user.getMail().isEmpty()) {
             return SUCCESS;
         } else {
             this.addActionError("Invalid username and password");

@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary navbar-atelier-meca">
-    <a class="navbar-brand" href="#">Atelier Mécanique</a>
+    <a class="navbar-brand" href="index">Atelier Mécanique</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -11,14 +11,16 @@
                 <a class="nav-link" href="#">Articles</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Utilisateurs</a>
+                <a class="nav-link" href="manageusers">Utilisateurs</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Recherches</a>
             </li>
         </ul>
-        <span class="navbar-text">
-            Bonjour,  !
-        </span>
+        <s:if test="!user.mail.isEmpty()">
+            <span class="navbar-text">
+                Bonjour,  <s:property value="user.prenom"/> <s:property value="user.nom"/>!
+            </span>
+        </s:if>
     </div>
 </nav>

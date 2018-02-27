@@ -5,7 +5,7 @@
 
 <struts>
 
-    <constant name="struts.devMode" value="true" />
+    <constant name="struts.devMode" value="false" />
 
 
     <package name="default" namespace="/" extends="struts-default">
@@ -15,6 +15,9 @@
         <action name="login" class="ca.uqac.archi.action.LoginAction">
             <result name="success">pages/accueil.jsp</result>
             <result name="input">pages/index.jsp</result>
+        </action>
+        <action name="manageusers" class="ca.uqac.archi.action.ManageUsersAction">
+            <result>pages/manageusers.jsp</result>
         </action>
     </package>
 
