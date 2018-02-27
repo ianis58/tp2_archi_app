@@ -17,18 +17,18 @@ import org.hibernate.Transaction;
  * @author almes
  */
 public class CategorieDAO extends HibernateUtil{
-    public void add(Categorie newcat) {  
+    public void add(Categorie cat) {  
         Session session = HibernateUtil.getSessionFactory().openSession();  
-        String fname = newcat.getNom();  
+        String fname = cat.getNom();  
         System.out.println("nom=" + fname);  
         //int newid = this.getNewCategorieId();  
-       // newcat.setId(newid);  
-        //int catid = newcat.getId();  
+       // cat.setId(newid);  
+        //int catid = cat.getId();  
         //System.out.println("DaoCategorie id ;-" + catid);  
-        System.out.println("From Dao:-" + newcat);  
+        System.out.println("From Dao:-" + cat);  
         session.beginTransaction();  
-        //session.merge(newcat);  
-        session.save(newcat);  
+        //session.merge(cat);  
+        session.save(cat);  
         session.getTransaction().commit();  
                 session.flush();  
                 session.close();  

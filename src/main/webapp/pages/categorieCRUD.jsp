@@ -22,13 +22,7 @@
                     center">  
                 <s:textfield name="cat.nom" label="Nom"/>  
                 <s:submit value="Add Categorie" align="center"/>  
-            </s:form>  
-
-             <%  
-            int count = 0;   
-
-
-            %>  
+            </s:form> 
             
         </div>
 
