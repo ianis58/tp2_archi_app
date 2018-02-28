@@ -31,14 +31,14 @@ public class ManageUsersAction extends ActionSupport {
 
     @Override
     public String execute() {
-        if(id != 0){
+        if(id != 0){//si l'id est défini c'est qu'on est sur la page modifier user
             employe = employeDAO.find(id);
         }
-        else{
+        else{//sinon on est sur la page du CRUD
             listEmployees = employeDAO.getAllEmployees();
         }
 
-        action = "manageusers";
+        action = "manageusers";//permet de mettre la classe css active sur le bon menu
 
         return SUCCESS;
     }

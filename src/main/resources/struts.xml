@@ -39,6 +39,28 @@
         <action name="deleteEmploye" method="delete" class="ca.uqac.archi.action.ManageUsersAction">
             <result name="success" type="redirect">manageusers</result>
         </action>
+        
+        <!-- Sous catégories CRUD -->
+        <action name="managesouscategories" class="ca.uqac.archi.action.ManageSousCategoriesAction">
+            <result>pages/managesouscategories.jsp</result>
+        </action>
+
+        <action name="addSouscategorie" class="ca.uqac.archi.action.ManageSousCategoriesAction" method="add">
+            <result name="success" type="chain">managesouscategories</result>
+            <result name="input" type="chain">managesouscategories</result>
+        </action>
+
+        <action name="editSouscategorieLink" class="ca.uqac.archi.action.ManageSousCategoriesAction">
+            <result name="success">pages/updateSouscategorie.jsp</result>
+        </action>
+
+        <action name="updateSouscategorie" class="ca.uqac.archi.action.ManageSousCategoriesAction" method="update">
+            <result name="success" type="chain">managesouscategories</result>
+        </action>
+
+        <action name="deleteSouscategorie" method="delete" class="ca.uqac.archi.action.ManageSousCategoriesAction">
+            <result name="success" type="redirect">managesouscategories</result>
+        </action>
 
         <!-- Categorie CRUD -->
         <action name="categorieCRUD" class="ca.uqac.archi.action.CategorieAction">
