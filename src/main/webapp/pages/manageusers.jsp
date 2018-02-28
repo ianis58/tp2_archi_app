@@ -9,20 +9,23 @@
         <%@ include file="template/nav.jsp" %>
 
         <div class="container body-content form-horizontal well">
-            <table>
-                <tr>
-                    <th>id</th>
-                    <th>Mail</th>
-                    <th>Mot de passe</th>
-                    <th>Admin</th>
-                    <th>Prénom</th>
-                    <th>Nom</th>
-                    <th>Adresse</th>
-                    <th>Téléphone</th>
-                </tr>
+            <h1>Gestion des utilisateurs</h1>
+            <table class="table table-sm table-hover table-bordered">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">id</th>
+                        <th scope="col">Mail</th>
+                        <th scope="col">Mot de passe</th>
+                        <th scope="col">Admin</th>
+                        <th scope="col">Prénom</th>
+                        <th scope="col">Nom</th>
+                        <th scope="col">Adresse</th>
+                        <th scope="col">Téléphone</th>
+                    </tr>
+                </thead>
                 <s:iterator value="listEmployees" var="employe">
                     <tr>
-                        <td><s:property value="#employe.idPersonne" /></td>
+                        <th scope="row"><s:property value="#employe.idPersonne" /></td>
                         <td><s:property value="#employe.mail" /></td>
                         <td><s:property value="#employe.password" /></td>
                         <td><s:if test="#employe.isAdmin == 1">Oui</s:if>
