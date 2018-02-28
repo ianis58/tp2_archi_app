@@ -26,8 +26,6 @@ public class CategorieAction extends ActionSupport{
      
     private int id =0;   
     private CategorieDAO dao;
-    private Integer[] Checkbox;//stores id of selected(checked) records for deletion.  
-    
     private String action;
       
     public CategorieAction() {  
@@ -105,13 +103,7 @@ public class CategorieAction extends ActionSupport{
   
     public void setId(int id) {  
         this.id = id;  
-    }       
-     public Integer[] getCheckbox() {  
-        return Checkbox;  
-    }  
-    public void setCheckbox(Integer[] Checkbox) {  
-        this.Checkbox = Checkbox;  
-    }   
+    }        
 
     public String getAction() {
         return action;

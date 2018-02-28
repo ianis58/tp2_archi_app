@@ -41,8 +41,9 @@
                             <th scope="row"><s:property value="#categorie.idCategorie" /></td>
                             <td><s:property value="#categorie.nom" /></td>
                             <td>
-                                <s:url var="editURL" action="editUser">
+                                <s:url var="editURL" action="editCategorieLink">
                                     <s:param name="id" value="%{#categorie.idCategorie}"></s:param>
+                                    <s:param name="nom" value="%{#categorie.nom}"></s:param>
 				</s:url>
                                 <s:a href="%{editURL}">Modifier</s:a>
                             </td>
@@ -50,7 +51,7 @@
                                 <s:url var="deleteURL" action="deleteCategorie">
                                     <s:param name="id" value="%{#categorie.idCategorie}"></s:param>
 				</s:url>
-                                <s:a href="%{deleteURL}">Supprimer</s:a>
+                                <s:a href="%{deleteURL}" onclick="return confirm('Etes-vous sûr de vouloir supprimer cette catégorie ?')">Supprimer</s:a>
                             </td>
                         </tr>
                         </s:iterator>

@@ -31,6 +31,12 @@
         <action name="deleteCategorie" method="delete" class="ca.uqac.archi.action.CategorieAction">
             <result name="success" type="redirect">categorieCRUD</result>
         </action>
+        <action name="editCategorieLink" class="ca.uqac.archi.action.CategorieAction">  
+            <result name="success">pages/updateCategorie.jsp</result>  
+        </action>
+        <action name="updateCategorie" class="ca.uqac.archi.action.CategorieAction" method="update">  
+            <result name="success" type="chain">categorieCRUD</result> 
+        </action> 
     </package>
 
 </struts>
