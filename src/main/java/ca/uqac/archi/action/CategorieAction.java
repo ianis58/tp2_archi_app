@@ -7,10 +7,13 @@ package ca.uqac.archi.action;
 
 import ca.uqac.archi.dao.CategorieDAO;
 import ca.uqac.archi.model.Categorie;
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import freemarker.core.ParseException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+import org.apache.struts2.ServletActionContext;
 
 /**
  *
@@ -19,9 +22,9 @@ import java.util.List;
 public class CategorieAction extends ActionSupport{
     private static final long serialVersionUID = 1L;  
     private Categorie cat = new Categorie();
-    private List<Categorie> CategorieList= new ArrayList<Categorie>(); 
+    private List<Categorie> listCategories; 
      
-    private int id;   
+    private int id =0;   
     private CategorieDAO dao;
     private Integer[] Checkbox;//stores id of selected(checked) records for deletion.  
     
@@ -36,9 +39,9 @@ public class CategorieAction extends ActionSupport{
     public String execute() {  
         action = "categorieCRUD";
         
-        this.CategorieList =  dao.list();  
+        listCategories =  dao.list();  
         
-        int count = CategorieList.size();  
+        int count = listCategories.size();  
       System.out.println("catList Size"+ count);  
         //System.out.println("execute called");  
         return SUCCESS;  
@@ -52,7 +55,7 @@ public class CategorieAction extends ActionSupport{
         } catch (Exception e) {  
             e.printStackTrace();  
         }  
-        this.CategorieList =  dao.list();  
+        listCategories =  dao.list();  
         return SUCCESS;  
     }  
      
@@ -64,41 +67,20 @@ public class CategorieAction extends ActionSupport{
         } catch (Exception e) {  
             e.printStackTrace();  
         }  
-       this.CategorieList =  dao.list();  
-        return SUCCESS;  
-    }  
-      
-     public String removeCategorie() throws ParseException { 
-               
-        try {  
-            
-            System.out.println("No of Selected Record:-" + Checkbox.length);  
-            for (int i=0;i<Checkbox.length; i++){  
-               System.out.println("Selected RecordId:-" + Checkbox[i]);  
-              dao.deleteCategorie((Checkbox[i]));  
-              
-            }                
-           
-              
-        } catch (Exception e) {  
-            e.printStackTrace();  
-        }  
-        this.CategorieList =  dao.list();  
+       listCategories =  dao.list();  
         return SUCCESS;  
     }  
        
-       
-      public String deleteCategorie() {  
-          
-        System.out.println("id value="+cat.getIdCategorie());  
-        int id = cat.getIdCategorie();  
+      public String delete() {  
+        HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get( ServletActionContext.HTTP_REQUEST);
+        System.out.println("id value="+Long.parseLong( request.getParameter("id")));
+        this.setId(Integer.parseInt(request.getParameter("id")));
         try {  
-              
              dao.deleteCategorie(id);  
         } catch (Exception e) {  
             e.printStackTrace();  
         }  
-        this.CategorieList =  dao.list();  
+        listCategories =  dao.list();  
         return SUCCESS;  
     }      
    
@@ -110,11 +92,11 @@ public class CategorieAction extends ActionSupport{
         this.cat = cat;  
     }  
   
-   public List<Categorie> getCategorieList() {  
-        return CategorieList;  
+   public List<Categorie> getListCategories() {  
+        return listCategories;  
     }  
-    public void setCategorieList(List<Categorie> CategorieList) {  
-        this.CategorieList = CategorieList;  
+    public void setListCategories(List<Categorie> listCategories) {  
+        this.listCategories = listCategories;  
     }  
   
     public int getId() {  

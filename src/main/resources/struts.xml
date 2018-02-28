@@ -24,11 +24,13 @@
         </action>
         
         <!-- Action list for category -->
-        <action name="addCategorie"  
-            class="ca.uqac.archi.action.CategorieAction" method="add">  
+        <action name="addCategorie" class="ca.uqac.archi.action.CategorieAction" method="add">  
             <result name="success" type="chain">categorieCRUD</result>  
             <result name="input" type="chain">categorieCRUD</result>  
         </action>  
+        <action name="deleteCategorie" method="delete" class="ca.uqac.archi.action.CategorieAction">
+            <result name="success" type="redirect">categorieCRUD</result>
+        </action>
     </package>
 
 </struts>
