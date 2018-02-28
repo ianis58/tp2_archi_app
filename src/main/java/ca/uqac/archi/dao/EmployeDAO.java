@@ -7,10 +7,8 @@ package ca.uqac.archi.dao;
 
 import ca.uqac.archi.model.Employe;
 import ca.uqac.archi.util.HibernateUtil;
-import java.io.Console;
 import java.math.BigInteger;
 import java.util.List;
-import java.util.logging.ConsoleHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.hibernate.Query;
@@ -45,12 +43,13 @@ public class EmployeDAO {
         Session session = HibernateUtil.getSessionFactory().openSession();
         List<Employe> listEmployees = (List<Employe>) session.createQuery("from Employe").list();
         
+        /*
         Logger logger = Logger.getLogger("STDOUT");
         
         for(Employe e: listEmployees){
             logger.log(Level.WARNING, e.toString());
         }
-
+        */
         session.close();
         return listEmployees;
     }

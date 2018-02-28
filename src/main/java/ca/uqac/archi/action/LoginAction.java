@@ -15,27 +15,37 @@ import ca.uqac.archi.dao.EmployeDAO;
 import ca.uqac.archi.model.Employe;
 public class LoginAction extends ActionSupport {
  
-    private static final long serialVersionUID = 1L;    
+    private static final long serialVersionUID = 1L;
     EmployeDAO dao = new EmployeDAO();
     Employe user;
- 
+
     @Override
     public void validate() {
-        if (user.getMail().length() == (0)) {
-            this.addFieldError("user.mail", "Mail is required");
-        }
-        if (user.getPassword().length() == (0)) {
-            this.addFieldError("user.password", "Password is required");
+        if(user != null){
+            if (user.getMail() == null || user.getMail().length() < 5) {
+                this.addFieldError("user.mail", "Veuillez entrer un email valide");
+            }
+            if (user.getPassword() == null || user.getPassword().length() < 3) {
+                this.addFieldError("user.password", "Veuillez entrer un mot de passe valide");
+            }
+
+            if(!getFieldErrors().isEmpty()){
+                user = null;
+            }
         }
     }
  
     @Override
     public String execute() {
-        user = dao.find(user.getMail(), user.getPassword());
-        if (!user.getMail().isEmpty()) {
-            return SUCCESS;
-        } else {
-            this.addActionError("Invalid username and password");
+        if(user != null){
+            user = dao.find(user.getMail(), user.getPassword());
+
+            if (user != null && user.getMail() != null) {
+                return SUCCESS;
+            } else {
+                this.addActionError("Combinaison email / mot de passe invalide");
+                user = null;
+            }
         }
         return INPUT;
     }
