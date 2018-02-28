@@ -15,16 +15,14 @@
         <%@ include file="template/nav.jsp" %>
 
         <div class="container body-content form-horizontal well">
-            <h1>Gestion des Catégories</h1>  
-  
-            <s:actionerror/>   
-            <s:form action="addCategorie" method="post"  style="align:  
-                    center">  
-                <s:textfield name="cat.nom" label="Nom"/>  
-                <s:submit value="Add Categorie" align="center"/>  
-            </s:form> 
-            
-            
+            <h1>Gestion des Catégories</h1>
+
+            <s:actionerror/>
+            <s:form action="addCategorie" method="post" style="align: center">
+                <s:textfield name="cat.nom" label="Nom"/>
+                <s:submit value="Add Categorie" align="center"/>
+            </s:form>
+
             <s:if test="listCategories.size() > 0">
                 <div>
                     <table class="table table-sm table-hover table-bordered">

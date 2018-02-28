@@ -12,16 +12,35 @@
         <action name="index">
             <result>pages/index.jsp</result>
         </action>
-        
+
         <action name="login" class="ca.uqac.archi.action.LoginAction">
             <result name="success">pages/index.jsp</result>
             <result name="input">pages/index.jsp</result>
         </action>
-        
+
+        <!-- Users / Employés CRUD -->
         <action name="manageusers" class="ca.uqac.archi.action.ManageUsersAction">
             <result>pages/manageusers.jsp</result>
         </action>
-        
+
+        <action name="addEmploye" class="ca.uqac.archi.action.ManageUsersAction" method="add">
+            <result name="success" type="chain">manageusers</result>
+            <result name="input" type="chain">manageusers</result>
+        </action>
+
+        <action name="editEmployeLink" class="ca.uqac.archi.action.ManageUsersAction">
+            <result name="success">pages/updateEmploye.jsp</result>
+        </action>
+
+        <action name="updateEmploye" class="ca.uqac.archi.action.ManageUsersAction" method="update">
+            <result name="success" type="chain">manageusers</result>
+        </action>
+
+        <action name="deleteEmploye" method="delete" class="ca.uqac.archi.action.ManageUsersAction">
+            <result name="success" type="redirect">manageusers</result>
+        </action>
+
+        <!-- Categorie CRUD -->
         <action name="categorieCRUD" class="ca.uqac.archi.action.CategorieAction">
             <result>pages/categorieCRUD.jsp</result>
         </action>
@@ -30,13 +49,16 @@
         <action name="addCategorie" class="ca.uqac.archi.action.CategorieAction" method="add">  
             <result name="success" type="chain">categorieCRUD</result>  
             <result name="input" type="chain">categorieCRUD</result>  
-        </action>  
+        </action>
+
         <action name="deleteCategorie" method="delete" class="ca.uqac.archi.action.CategorieAction">
             <result name="success" type="redirect">categorieCRUD</result>
         </action>
+
         <action name="editCategorieLink" class="ca.uqac.archi.action.CategorieAction">  
             <result name="success">pages/updateCategorie.jsp</result>  
         </action>
+
         <action name="updateCategorie" class="ca.uqac.archi.action.CategorieAction" method="update">  
             <result name="success" type="chain">categorieCRUD</result> 
         </action> 
