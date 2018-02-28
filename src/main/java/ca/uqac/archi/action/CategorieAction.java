@@ -17,8 +17,8 @@ import java.util.List;
  * @author almes
  */
 public class CategorieAction extends ActionSupport{
-    private static final long serialVersionUID = 9149826260758390091L;  
-    private Categorie cat= new Categorie();  
+    private static final long serialVersionUID = 1L;  
+    private Categorie cat = new Categorie();
     private List<Categorie> CategorieList= new ArrayList<Categorie>(); 
      
     private int id;   
@@ -53,7 +53,7 @@ public class CategorieAction extends ActionSupport{
     }  
      
     public String update() throws ParseException{ 
-         System.out.println(getCategorie());  
+         System.out.println(getCat());  
         try {  
               
              dao.update(cat);  
@@ -98,11 +98,11 @@ public class CategorieAction extends ActionSupport{
         return SUCCESS;  
     }      
    
-    public Categorie getCategorie() {  
+    public Categorie getCat() {  
         return cat;  
     }  
   
-    public void setCategorie(Categorie cat) {  
+    public void setCat(Categorie cat) {  
         this.cat = cat;  
     }  
   
