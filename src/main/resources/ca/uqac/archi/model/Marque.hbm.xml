@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 24 f?vr. 2018 20:24:00 by Hibernate Tools 4.3.1 -->
+<!-- Generated 1 mars 2018 16:36:02 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="ca.uqac.archi.model.Marque" table="marque" catalog="aaetp" optimistic-lock="version">
         <id name="idMarque" type="java.lang.Integer">
@@ -11,5 +11,17 @@
         <property name="libelleMarque" type="string">
             <column name="LibelleMarque" />
         </property>
+        <set name="articles" table="article" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="MarqueIdMarque" not-null="true" />
+            </key>
+            <one-to-many class="ca.uqac.archi.model.Article" />
+        </set>
+        <set name="vehicules" table="vehicule" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="MarqueIdMarque" not-null="true" />
+            </key>
+            <one-to-many class="ca.uqac.archi.model.Vehicule" />
+        </set>
     </class>
 </hibernate-mapping>

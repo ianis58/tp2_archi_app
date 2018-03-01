@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 24 f?vr. 2018 20:24:00 by Hibernate Tools 4.3.1 -->
+<!-- Generated 1 mars 2018 16:36:02 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="ca.uqac.archi.model.Fournisseur" table="fournisseur" catalog="aaetp" optimistic-lock="version">
         <id name="idFournisseur" type="java.lang.Integer">
@@ -26,5 +26,11 @@
         <property name="mail" type="string">
             <column name="Mail" />
         </property>
+        <set name="factures" table="facture" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="FournisseurIdFournisseur" not-null="true" />
+            </key>
+            <one-to-many class="ca.uqac.archi.model.Facture" />
+        </set>
     </class>
 </hibernate-mapping>

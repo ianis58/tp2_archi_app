@@ -1,12 +1,20 @@
 package ca.uqac.archi.model;
-// Generated 24 fevr. 2018 20:23:59 by Hibernate Tools 4.3.1
+// Generated 1 mars 2018 16:36:01 by Hibernate Tools 4.3.1
 
 
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -20,29 +28,34 @@ public class Article  implements java.io.Serializable {
 
 
      private Integer idArticle;
-     private int marqueIdMarque;
+     private Marque marque;
      private String nom;
      private String reference;
      private float prix;
      private String description;
-     private String discriminator;
+     private Set lignecommandes = new HashSet(0);
+     private Set stocks = new HashSet(0);
+     private Set vehicules = new HashSet(0);
+     private Set souscategories = new HashSet(0);
 
     public Article() {
     }
 
 	
-    public Article(int marqueIdMarque, float prix, String discriminator) {
-        this.marqueIdMarque = marqueIdMarque;
+    public Article(Marque marque, float prix) {
+        this.marque = marque;
         this.prix = prix;
-        this.discriminator = discriminator;
     }
-    public Article(int marqueIdMarque, String nom, String reference, float prix, String description, String discriminator) {
-       this.marqueIdMarque = marqueIdMarque;
+    public Article(Marque marque, String nom, String reference, float prix, String description, Set lignecommandes, Set stocks, Set vehicules, Set souscategories) {
+       this.marque = marque;
        this.nom = nom;
        this.reference = reference;
        this.prix = prix;
        this.description = description;
-       this.discriminator = discriminator;
+       this.lignecommandes = lignecommandes;
+       this.stocks = stocks;
+       this.vehicules = vehicules;
+       this.souscategories = souscategories;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -57,14 +70,14 @@ public class Article  implements java.io.Serializable {
         this.idArticle = idArticle;
     }
 
-    
-    @Column(name="MarqueIdMarque", nullable=false)
-    public int getMarqueIdMarque() {
-        return this.marqueIdMarque;
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="MarqueIdMarque", nullable=false)
+    public Marque getMarque() {
+        return this.marque;
     }
     
-    public void setMarqueIdMarque(int marqueIdMarque) {
-        this.marqueIdMarque = marqueIdMarque;
+    public void setMarque(Marque marque) {
+        this.marque = marque;
     }
 
     
@@ -107,14 +120,49 @@ public class Article  implements java.io.Serializable {
         this.description = description;
     }
 
-    
-    @Column(name="Discriminator", nullable=false)
-    public String getDiscriminator() {
-        return this.discriminator;
+@OneToMany(fetch=FetchType.LAZY, mappedBy="article")
+    public Set getLignecommandes() {
+        return this.lignecommandes;
     }
     
-    public void setDiscriminator(String discriminator) {
-        this.discriminator = discriminator;
+    public void setLignecommandes(Set lignecommandes) {
+        this.lignecommandes = lignecommandes;
+    }
+
+@ManyToMany(fetch=FetchType.LAZY)
+    @JoinTable(name="stock_article", catalog="aaetp", joinColumns = { 
+        @JoinColumn(name="ArticleIdArticle", nullable=false, updatable=false) }, inverseJoinColumns = { 
+        @JoinColumn(name="StockIdStock", nullable=false, updatable=false) })
+    public Set getStocks() {
+        return this.stocks;
+    }
+    
+    public void setStocks(Set stocks) {
+        this.stocks = stocks;
+    }
+
+@ManyToMany(fetch=FetchType.LAZY)
+    @JoinTable(name="vehicule_article", catalog="aaetp", joinColumns = { 
+        @JoinColumn(name="ArticleIdArticle", nullable=false, updatable=false) }, inverseJoinColumns = { 
+        @JoinColumn(name="VehiculeIdVehicule", nullable=false, updatable=false) })
+    public Set getVehicules() {
+        return this.vehicules;
+    }
+    
+    public void setVehicules(Set vehicules) {
+        this.vehicules = vehicules;
+    }
+
+@ManyToMany(fetch=FetchType.LAZY)
+    @JoinTable(name="souscategorie_article", catalog="aaetp", joinColumns = { 
+        @JoinColumn(name="ArticleIdArticle", nullable=false, updatable=false) }, inverseJoinColumns = { 
+        @JoinColumn(name="SousCategorieIdSousCategorie", nullable=false, updatable=false) })
+    public Set getSouscategories() {
+        return this.souscategories;
+    }
+    
+    public void setSouscategories(Set souscategories) {
+        this.souscategories = souscategories;
     }
 
 

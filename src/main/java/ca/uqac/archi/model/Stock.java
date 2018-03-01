@@ -1,13 +1,20 @@
 package ca.uqac.archi.model;
-// Generated 24 fevr. 2018 20:23:59 by Hibernate Tools 4.3.1
+// Generated 1 mars 2018 16:36:01 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -25,6 +32,8 @@ public class Stock  implements java.io.Serializable {
      private Integer idStock;
      private int quantite;
      private Date dateEntree;
+     private Set emplacements = new HashSet(0);
+     private Set articles = new HashSet(0);
 
     public Stock() {
     }
@@ -33,9 +42,11 @@ public class Stock  implements java.io.Serializable {
     public Stock(int quantite) {
         this.quantite = quantite;
     }
-    public Stock(int quantite, Date dateEntree) {
+    public Stock(int quantite, Date dateEntree, Set emplacements, Set articles) {
        this.quantite = quantite;
        this.dateEntree = dateEntree;
+       this.emplacements = emplacements;
+       this.articles = articles;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -68,6 +79,27 @@ public class Stock  implements java.io.Serializable {
     
     public void setDateEntree(Date dateEntree) {
         this.dateEntree = dateEntree;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="stock")
+    public Set getEmplacements() {
+        return this.emplacements;
+    }
+    
+    public void setEmplacements(Set emplacements) {
+        this.emplacements = emplacements;
+    }
+
+@ManyToMany(fetch=FetchType.LAZY)
+    @JoinTable(name="stock_article", catalog="aaetp", joinColumns = { 
+        @JoinColumn(name="StockIdStock", nullable=false, updatable=false) }, inverseJoinColumns = { 
+        @JoinColumn(name="ArticleIdArticle", nullable=false, updatable=false) })
+    public Set getArticles() {
+        return this.articles;
+    }
+    
+    public void setArticles(Set articles) {
+        this.articles = articles;
     }
 
 

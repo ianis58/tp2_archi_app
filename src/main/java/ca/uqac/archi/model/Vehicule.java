@@ -1,12 +1,19 @@
 package ca.uqac.archi.model;
-// Generated 24 fevr. 2018 20:23:59 by Hibernate Tools 4.3.1
+// Generated 1 mars 2018 16:36:01 by Hibernate Tools 4.3.1
 
 
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -20,22 +27,24 @@ public class Vehicule  implements java.io.Serializable {
 
 
      private Integer idVehicule;
-     private int marqueIdMarque;
+     private Marque marque;
      private int annee;
      private String libelleVehicule;
+     private Set articles = new HashSet(0);
 
     public Vehicule() {
     }
 
 	
-    public Vehicule(int marqueIdMarque, int annee) {
-        this.marqueIdMarque = marqueIdMarque;
+    public Vehicule(Marque marque, int annee) {
+        this.marque = marque;
         this.annee = annee;
     }
-    public Vehicule(int marqueIdMarque, int annee, String libelleVehicule) {
-       this.marqueIdMarque = marqueIdMarque;
+    public Vehicule(Marque marque, int annee, String libelleVehicule, Set articles) {
+       this.marque = marque;
        this.annee = annee;
        this.libelleVehicule = libelleVehicule;
+       this.articles = articles;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -50,14 +59,14 @@ public class Vehicule  implements java.io.Serializable {
         this.idVehicule = idVehicule;
     }
 
-    
-    @Column(name="MarqueIdMarque", nullable=false)
-    public int getMarqueIdMarque() {
-        return this.marqueIdMarque;
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="MarqueIdMarque", nullable=false)
+    public Marque getMarque() {
+        return this.marque;
     }
     
-    public void setMarqueIdMarque(int marqueIdMarque) {
-        this.marqueIdMarque = marqueIdMarque;
+    public void setMarque(Marque marque) {
+        this.marque = marque;
     }
 
     
@@ -80,9 +89,15 @@ public class Vehicule  implements java.io.Serializable {
         this.libelleVehicule = libelleVehicule;
     }
 
-
-
-
+@ManyToMany(fetch=FetchType.LAZY)
+    @JoinTable(name="vehicule_article", catalog="aaetp", joinColumns = { 
+        @JoinColumn(name="VehiculeIdVehicule", nullable=false, updatable=false) }, inverseJoinColumns = { 
+        @JoinColumn(name="ArticleIdArticle", nullable=false, updatable=false) })
+    public Set getArticles() {
+        return this.articles;
+    }
+    
+    public void setArticles(Set articles) {
+        this.articles = articles;
+    }
 }
-
-

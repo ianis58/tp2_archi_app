@@ -1,21 +1,29 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 24 f?vr. 2018 20:24:00 by Hibernate Tools 4.3.1 -->
+<!-- Generated 1 mars 2018 16:36:02 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="ca.uqac.archi.model.Vehicule" table="vehicule" catalog="aaetp" optimistic-lock="version">
         <id name="idVehicule" type="java.lang.Integer">
             <column name="IdVehicule" />
             <generator class="identity" />
         </id>
-        <property name="marqueIdMarque" type="int">
+        <many-to-one name="marque" class="ca.uqac.archi.model.Marque" fetch="select">
             <column name="MarqueIdMarque" not-null="true" />
-        </property>
+        </many-to-one>
         <property name="annee" type="int">
             <column name="Annee" not-null="true" />
         </property>
         <property name="libelleVehicule" type="string">
             <column name="LibelleVehicule" />
         </property>
+        <set name="articles" table="vehicule_article" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="VehiculeIdVehicule" not-null="true" />
+            </key>
+            <many-to-many entity-name="ca.uqac.archi.model.Article">
+                <column name="ArticleIdArticle" not-null="true" />
+            </many-to-many>
+        </set>
     </class>
 </hibernate-mapping>

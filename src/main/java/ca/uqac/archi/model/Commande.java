@@ -1,12 +1,18 @@
 package ca.uqac.archi.model;
-// Generated 24 fevr. 2018 20:23:59 by Hibernate Tools 4.3.1
+// Generated 1 mars 2018 16:36:01 by Hibernate Tools 4.3.1
 
 
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -20,13 +26,23 @@ public class Commande  implements java.io.Serializable {
 
 
      private Integer idCommande;
-     private int employeIdPersonne;
+     private Employe employe;
+     private Set factures = new HashSet(0);
+     private Set livraisons = new HashSet(0);
+     private Set lignecommandes = new HashSet(0);
 
     public Commande() {
     }
 
-    public Commande(int employeIdPersonne) {
-       this.employeIdPersonne = employeIdPersonne;
+	
+    public Commande(Employe employe) {
+        this.employe = employe;
+    }
+    public Commande(Employe employe, Set factures, Set livraisons, Set lignecommandes) {
+       this.employe = employe;
+       this.factures = factures;
+       this.livraisons = livraisons;
+       this.lignecommandes = lignecommandes;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -41,14 +57,41 @@ public class Commande  implements java.io.Serializable {
         this.idCommande = idCommande;
     }
 
-    
-    @Column(name="EmployeIdPersonne", nullable=false)
-    public int getEmployeIdPersonne() {
-        return this.employeIdPersonne;
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="EmployeIdPersonne", nullable=false)
+    public Employe getEmploye() {
+        return this.employe;
     }
     
-    public void setEmployeIdPersonne(int employeIdPersonne) {
-        this.employeIdPersonne = employeIdPersonne;
+    public void setEmploye(Employe employe) {
+        this.employe = employe;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="commande")
+    public Set getFactures() {
+        return this.factures;
+    }
+    
+    public void setFactures(Set factures) {
+        this.factures = factures;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="commande")
+    public Set getLivraisons() {
+        return this.livraisons;
+    }
+    
+    public void setLivraisons(Set livraisons) {
+        this.livraisons = livraisons;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="commande")
+    public Set getLignecommandes() {
+        return this.lignecommandes;
+    }
+    
+    public void setLignecommandes(Set lignecommandes) {
+        this.lignecommandes = lignecommandes;
     }
 
 

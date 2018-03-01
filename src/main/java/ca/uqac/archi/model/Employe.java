@@ -1,12 +1,16 @@
 package ca.uqac.archi.model;
-// Generated 24 fevr. 2018 20:23:59 by Hibernate Tools 4.3.1
+// Generated 1 mars 2018 16:36:01 by Hibernate Tools 4.3.1
 
 
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -18,6 +22,7 @@ import javax.persistence.Table;
 )
 public class Employe  implements java.io.Serializable {
 
+
      private Integer idPersonne;
      private String adresse;
      private String password;
@@ -26,6 +31,7 @@ public class Employe  implements java.io.Serializable {
      private String prenom;
      private String telephone;
      private String mail;
+     private Set commandes = new HashSet(0);
 
     public Employe() {
     }
@@ -34,7 +40,7 @@ public class Employe  implements java.io.Serializable {
     public Employe(boolean isAdmin) {
         this.isAdmin = isAdmin;
     }
-    public Employe(String adresse, String password, boolean isAdmin, String nom, String prenom, String telephone, String mail) {
+    public Employe(String adresse, String password, boolean isAdmin, String nom, String prenom, String telephone, String mail, Set commandes) {
        this.adresse = adresse;
        this.password = password;
        this.isAdmin = isAdmin;
@@ -42,6 +48,7 @@ public class Employe  implements java.io.Serializable {
        this.prenom = prenom;
        this.telephone = telephone;
        this.mail = mail;
+       this.commandes = commandes;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -126,20 +133,17 @@ public class Employe  implements java.io.Serializable {
         this.mail = mail;
     }
 
-    public String toString(){
-        String employeString;
-        
-        employeString = this.idPersonne + " " +
-                        this.adresse + " " +
-                        this.mail + " " +
-                        this.password + " " +
-                        this.nom + " " +
-                        this.prenom + " " +
-                        this.telephone + " " +
-                        this.isAdmin;
-        
-        return employeString;
+@OneToMany(fetch=FetchType.LAZY, mappedBy="employe")
+    public Set getCommandes() {
+        return this.commandes;
     }
+    
+    public void setCommandes(Set commandes) {
+        this.commandes = commandes;
+    }
+
+
+
 
 }
 

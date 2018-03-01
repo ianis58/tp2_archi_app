@@ -1,12 +1,18 @@
 package ca.uqac.archi.model;
-// Generated 24 fevr. 2018 20:23:59 by Hibernate Tools 4.3.1
+// Generated 1 mars 2018 16:36:01 by Hibernate Tools 4.3.1
 
 
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 /**
@@ -21,12 +27,14 @@ public class Categorie  implements java.io.Serializable {
 
      private Integer idCategorie;
      private String nom;
+     private Set souscategories = new HashSet(0);
 
     public Categorie() {
     }
 
-    public Categorie(String nom) {
+    public Categorie(String nom, Set souscategories) {
        this.nom = nom;
+       this.souscategories = souscategories;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -49,6 +57,18 @@ public class Categorie  implements java.io.Serializable {
     
     public void setNom(String nom) {
         this.nom = nom;
+    }
+
+@ManyToMany(fetch=FetchType.LAZY)
+    @JoinTable(name="souscategorie_categorie", catalog="aaetp", joinColumns = { 
+        @JoinColumn(name="CategorieIdCategorie", nullable=false, updatable=false) }, inverseJoinColumns = { 
+        @JoinColumn(name="SousCategorieIdSousCategorie", nullable=false, updatable=false) })
+    public Set getSouscategories() {
+        return this.souscategories;
+    }
+    
+    public void setSouscategories(Set souscategories) {
+        this.souscategories = souscategories;
     }
 
 

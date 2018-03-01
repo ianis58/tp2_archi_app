@@ -1,12 +1,15 @@
 package ca.uqac.archi.model;
-// Generated 24 fevr. 2018 20:23:59 by Hibernate Tools 4.3.1
+// Generated 1 mars 2018 16:36:01 by Hibernate Tools 4.3.1
 
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -20,16 +23,16 @@ public class Lignecommande  implements java.io.Serializable {
 
 
      private Integer idLigneCommande;
-     private int articleIdArticle;
-     private int commandeIdCommande;
+     private Article article;
+     private Commande commande;
      private int quantite;
 
     public Lignecommande() {
     }
 
-    public Lignecommande(int articleIdArticle, int commandeIdCommande, int quantite) {
-       this.articleIdArticle = articleIdArticle;
-       this.commandeIdCommande = commandeIdCommande;
+    public Lignecommande(Article article, Commande commande, int quantite) {
+       this.article = article;
+       this.commande = commande;
        this.quantite = quantite;
     }
    
@@ -45,24 +48,24 @@ public class Lignecommande  implements java.io.Serializable {
         this.idLigneCommande = idLigneCommande;
     }
 
-    
-    @Column(name="ArticleIdArticle", nullable=false)
-    public int getArticleIdArticle() {
-        return this.articleIdArticle;
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="ArticleIdArticle", nullable=false)
+    public Article getArticle() {
+        return this.article;
     }
     
-    public void setArticleIdArticle(int articleIdArticle) {
-        this.articleIdArticle = articleIdArticle;
+    public void setArticle(Article article) {
+        this.article = article;
     }
 
-    
-    @Column(name="CommandeIdCommande", nullable=false)
-    public int getCommandeIdCommande() {
-        return this.commandeIdCommande;
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="CommandeIdCommande", nullable=false)
+    public Commande getCommande() {
+        return this.commande;
     }
     
-    public void setCommandeIdCommande(int commandeIdCommande) {
-        this.commandeIdCommande = commandeIdCommande;
+    public void setCommande(Commande commande) {
+        this.commande = commande;
     }
 
     

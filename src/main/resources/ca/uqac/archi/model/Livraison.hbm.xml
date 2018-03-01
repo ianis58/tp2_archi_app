@@ -1,16 +1,16 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 24 f?vr. 2018 20:24:00 by Hibernate Tools 4.3.1 -->
+<!-- Generated 1 mars 2018 16:36:02 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="ca.uqac.archi.model.Livraison" table="livraison" catalog="aaetp" optimistic-lock="version">
         <id name="idLivraison" type="java.lang.Integer">
             <column name="IdLivraison" />
             <generator class="identity" />
         </id>
-        <property name="commandeIdCommande" type="int">
+        <many-to-one name="commande" class="ca.uqac.archi.model.Commande" fetch="select">
             <column name="CommandeIdCommande" not-null="true" />
-        </property>
+        </many-to-one>
         <property name="date" type="date">
             <column name="Date" length="10" />
         </property>

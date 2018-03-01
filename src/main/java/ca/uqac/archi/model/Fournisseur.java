@@ -1,12 +1,16 @@
 package ca.uqac.archi.model;
-// Generated 24 fevr. 2018 20:23:59 by Hibernate Tools 4.3.1
+// Generated 1 mars 2018 16:36:01 by Hibernate Tools 4.3.1
 
 
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -26,17 +30,19 @@ public class Fournisseur  implements java.io.Serializable {
      private String prenom;
      private String telephone;
      private String mail;
+     private Set factures = new HashSet(0);
 
     public Fournisseur() {
     }
 
-    public Fournisseur(String adresse, String nom, String raisonSociale, String prenom, String telephone, String mail) {
+    public Fournisseur(String adresse, String nom, String raisonSociale, String prenom, String telephone, String mail, Set factures) {
        this.adresse = adresse;
        this.nom = nom;
        this.raisonSociale = raisonSociale;
        this.prenom = prenom;
        this.telephone = telephone;
        this.mail = mail;
+       this.factures = factures;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -109,6 +115,15 @@ public class Fournisseur  implements java.io.Serializable {
     
     public void setMail(String mail) {
         this.mail = mail;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="fournisseur")
+    public Set getFactures() {
+        return this.factures;
+    }
+    
+    public void setFactures(Set factures) {
+        this.factures = factures;
     }
 
 

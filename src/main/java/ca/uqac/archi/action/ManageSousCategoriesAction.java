@@ -1,5 +1,6 @@
 package ca.uqac.archi.action;
 
+import ca.uqac.archi.dao.CategorieDAO;
 import ca.uqac.archi.dao.SouscategorieDAO;
 import ca.uqac.archi.model.Souscategorie;
 import static com.opensymphony.xwork2.Action.SUCCESS;
@@ -12,6 +13,7 @@ import org.apache.struts2.ServletActionContext;
 
 public class ManageSousCategoriesAction extends ActionSupport{
     public static SouscategorieDAO souscategorieDAO = new SouscategorieDAO();
+    public static CategorieDAO categorieDAO = new CategorieDAO();
     
     private int id = 0;
 

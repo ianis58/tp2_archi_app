@@ -1,15 +1,33 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 24 f?vr. 2018 20:24:00 by Hibernate Tools 4.3.1 -->
+<!-- Generated 1 mars 2018 16:36:02 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="ca.uqac.archi.model.Commande" table="commande" catalog="aaetp" optimistic-lock="version">
         <id name="idCommande" type="java.lang.Integer">
             <column name="IdCommande" />
             <generator class="identity" />
         </id>
-        <property name="employeIdPersonne" type="int">
+        <many-to-one name="employe" class="ca.uqac.archi.model.Employe" fetch="select">
             <column name="EmployeIdPersonne" not-null="true" />
-        </property>
+        </many-to-one>
+        <set name="factures" table="facture" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="CommandeIdCommande" not-null="true" />
+            </key>
+            <one-to-many class="ca.uqac.archi.model.Facture" />
+        </set>
+        <set name="livraisons" table="livraison" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="CommandeIdCommande" not-null="true" />
+            </key>
+            <one-to-many class="ca.uqac.archi.model.Livraison" />
+        </set>
+        <set name="lignecommandes" table="lignecommande" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="CommandeIdCommande" not-null="true" />
+            </key>
+            <one-to-many class="ca.uqac.archi.model.Lignecommande" />
+        </set>
     </class>
 </hibernate-mapping>

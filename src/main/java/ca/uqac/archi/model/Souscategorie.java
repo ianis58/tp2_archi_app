@@ -1,12 +1,18 @@
 package ca.uqac.archi.model;
-// Generated 24 fevr. 2018 20:23:59 by Hibernate Tools 4.3.1
+// Generated 1 mars 2018 16:36:01 by Hibernate Tools 4.3.1
 
 
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 /**
@@ -21,12 +27,16 @@ public class Souscategorie  implements java.io.Serializable {
 
      private Integer idSousCategorie;
      private String nom;
+     private Set categories = new HashSet(0);
+     private Set articles = new HashSet(0);
 
     public Souscategorie() {
     }
 
-    public Souscategorie(String nom) {
+    public Souscategorie(String nom, Set categories, Set articles) {
        this.nom = nom;
+       this.categories = categories;
+       this.articles = articles;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -51,9 +61,27 @@ public class Souscategorie  implements java.io.Serializable {
         this.nom = nom;
     }
 
+@ManyToMany(fetch=FetchType.LAZY)
+    @JoinTable(name="souscategorie_categorie", catalog="aaetp", joinColumns = { 
+        @JoinColumn(name="SousCategorieIdSousCategorie", nullable=false, updatable=false) }, inverseJoinColumns = { 
+        @JoinColumn(name="CategorieIdCategorie", nullable=false, updatable=false) })
+    public Set getCategories() {
+        return this.categories;
+    }
+    
+    public void setCategories(Set categories) {
+        this.categories = categories;
+    }
 
-
-
+@ManyToMany(fetch=FetchType.LAZY)
+    @JoinTable(name="souscategorie_article", catalog="aaetp", joinColumns = { 
+        @JoinColumn(name="SousCategorieIdSousCategorie", nullable=false, updatable=false) }, inverseJoinColumns = { 
+        @JoinColumn(name="ArticleIdArticle", nullable=false, updatable=false) })
+    public Set getArticles() {
+        return this.articles;
+    }
+    
+    public void setArticles(Set articles) {
+        this.articles = articles;
+    }
 }
-
-

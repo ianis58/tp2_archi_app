@@ -1,12 +1,15 @@
 package ca.uqac.archi.model;
-// Generated 24 fevr. 2018 20:23:59 by Hibernate Tools 4.3.1
+// Generated 1 mars 2018 16:36:01 by Hibernate Tools 4.3.1
 
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -20,7 +23,7 @@ public class Emplacement  implements java.io.Serializable {
 
 
      private Integer idEmplacement;
-     private int stockIdStock;
+     private Stock stock;
      private String allee;
      private String rangee;
      private String etage;
@@ -29,11 +32,11 @@ public class Emplacement  implements java.io.Serializable {
     }
 
 	
-    public Emplacement(int stockIdStock) {
-        this.stockIdStock = stockIdStock;
+    public Emplacement(Stock stock) {
+        this.stock = stock;
     }
-    public Emplacement(int stockIdStock, String allee, String rangee, String etage) {
-       this.stockIdStock = stockIdStock;
+    public Emplacement(Stock stock, String allee, String rangee, String etage) {
+       this.stock = stock;
        this.allee = allee;
        this.rangee = rangee;
        this.etage = etage;
@@ -51,14 +54,14 @@ public class Emplacement  implements java.io.Serializable {
         this.idEmplacement = idEmplacement;
     }
 
-    
-    @Column(name="StockIdStock", nullable=false)
-    public int getStockIdStock() {
-        return this.stockIdStock;
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="StockIdStock", nullable=false)
+    public Stock getStock() {
+        return this.stock;
     }
     
-    public void setStockIdStock(int stockIdStock) {
-        this.stockIdStock = stockIdStock;
+    public void setStock(Stock stock) {
+        this.stock = stock;
     }
 
     

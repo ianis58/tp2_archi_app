@@ -1,13 +1,16 @@
 package ca.uqac.archi.model;
-// Generated 24 fevr. 2018 20:23:59 by Hibernate Tools 4.3.1
+// Generated 1 mars 2018 16:36:01 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -23,18 +26,18 @@ public class Livraison  implements java.io.Serializable {
 
 
      private Integer idLivraison;
-     private int commandeIdCommande;
+     private Commande commande;
      private Date date;
 
     public Livraison() {
     }
 
 	
-    public Livraison(int commandeIdCommande) {
-        this.commandeIdCommande = commandeIdCommande;
+    public Livraison(Commande commande) {
+        this.commande = commande;
     }
-    public Livraison(int commandeIdCommande, Date date) {
-       this.commandeIdCommande = commandeIdCommande;
+    public Livraison(Commande commande, Date date) {
+       this.commande = commande;
        this.date = date;
     }
    
@@ -50,14 +53,14 @@ public class Livraison  implements java.io.Serializable {
         this.idLivraison = idLivraison;
     }
 
-    
-    @Column(name="CommandeIdCommande", nullable=false)
-    public int getCommandeIdCommande() {
-        return this.commandeIdCommande;
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="CommandeIdCommande", nullable=false)
+    public Commande getCommande() {
+        return this.commande;
     }
     
-    public void setCommandeIdCommande(int commandeIdCommande) {
-        this.commandeIdCommande = commandeIdCommande;
+    public void setCommande(Commande commande) {
+        this.commande = commande;
     }
 
     @Temporal(TemporalType.DATE)

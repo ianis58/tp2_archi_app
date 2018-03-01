@@ -1,12 +1,15 @@
 package ca.uqac.archi.model;
-// Generated 24 fevr. 2018 20:23:59 by Hibernate Tools 4.3.1
+// Generated 1 mars 2018 16:36:01 by Hibernate Tools 4.3.1
 
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -20,8 +23,8 @@ public class Facture  implements java.io.Serializable {
 
 
      private Integer idFacture;
-     private int fournisseurIdFournisseur;
-     private int commandeIdCommande;
+     private Commande commande;
+     private Fournisseur fournisseur;
      private String descriptif;
      private float prixFacture;
 
@@ -29,14 +32,14 @@ public class Facture  implements java.io.Serializable {
     }
 
 	
-    public Facture(int fournisseurIdFournisseur, int commandeIdCommande, float prixFacture) {
-        this.fournisseurIdFournisseur = fournisseurIdFournisseur;
-        this.commandeIdCommande = commandeIdCommande;
+    public Facture(Commande commande, Fournisseur fournisseur, float prixFacture) {
+        this.commande = commande;
+        this.fournisseur = fournisseur;
         this.prixFacture = prixFacture;
     }
-    public Facture(int fournisseurIdFournisseur, int commandeIdCommande, String descriptif, float prixFacture) {
-       this.fournisseurIdFournisseur = fournisseurIdFournisseur;
-       this.commandeIdCommande = commandeIdCommande;
+    public Facture(Commande commande, Fournisseur fournisseur, String descriptif, float prixFacture) {
+       this.commande = commande;
+       this.fournisseur = fournisseur;
        this.descriptif = descriptif;
        this.prixFacture = prixFacture;
     }
@@ -53,24 +56,24 @@ public class Facture  implements java.io.Serializable {
         this.idFacture = idFacture;
     }
 
-    
-    @Column(name="FournisseurIdFournisseur", nullable=false)
-    public int getFournisseurIdFournisseur() {
-        return this.fournisseurIdFournisseur;
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="CommandeIdCommande", nullable=false)
+    public Commande getCommande() {
+        return this.commande;
     }
     
-    public void setFournisseurIdFournisseur(int fournisseurIdFournisseur) {
-        this.fournisseurIdFournisseur = fournisseurIdFournisseur;
+    public void setCommande(Commande commande) {
+        this.commande = commande;
     }
 
-    
-    @Column(name="CommandeIdCommande", nullable=false)
-    public int getCommandeIdCommande() {
-        return this.commandeIdCommande;
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="FournisseurIdFournisseur", nullable=false)
+    public Fournisseur getFournisseur() {
+        return this.fournisseur;
     }
     
-    public void setCommandeIdCommande(int commandeIdCommande) {
-        this.commandeIdCommande = commandeIdCommande;
+    public void setFournisseur(Fournisseur fournisseur) {
+        this.fournisseur = fournisseur;
     }
 
     

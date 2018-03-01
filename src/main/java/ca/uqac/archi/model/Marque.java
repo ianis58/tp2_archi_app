@@ -1,12 +1,16 @@
 package ca.uqac.archi.model;
-// Generated 24 fevr. 2018 20:23:59 by Hibernate Tools 4.3.1
+// Generated 1 mars 2018 16:36:01 by Hibernate Tools 4.3.1
 
 
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -21,12 +25,16 @@ public class Marque  implements java.io.Serializable {
 
      private Integer idMarque;
      private String libelleMarque;
+     private Set articles = new HashSet(0);
+     private Set vehicules = new HashSet(0);
 
     public Marque() {
     }
 
-    public Marque(String libelleMarque) {
+    public Marque(String libelleMarque, Set articles, Set vehicules) {
        this.libelleMarque = libelleMarque;
+       this.articles = articles;
+       this.vehicules = vehicules;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -49,6 +57,24 @@ public class Marque  implements java.io.Serializable {
     
     public void setLibelleMarque(String libelleMarque) {
         this.libelleMarque = libelleMarque;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="marque")
+    public Set getArticles() {
+        return this.articles;
+    }
+    
+    public void setArticles(Set articles) {
+        this.articles = articles;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="marque")
+    public Set getVehicules() {
+        return this.vehicules;
+    }
+    
+    public void setVehicules(Set vehicules) {
+        this.vehicules = vehicules;
     }
 
 
