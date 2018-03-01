@@ -25,7 +25,7 @@
         </ul>
         <s:if test="!user.mail.isEmpty()">
             <span class="navbar-text">
-                Bonjour,  <s:property value="user.prenom"/> <s:property value="user.nom"/>!
+                Bonjour,  <s:property value="%{#attr['prenom']}"/> <s:property value="%{#attr['nom']}"/>!
             </span>
         </s:if>
     </div>

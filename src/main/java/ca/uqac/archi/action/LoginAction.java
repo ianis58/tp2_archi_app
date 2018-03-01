@@ -13,11 +13,17 @@ package ca.uqac.archi.action;
 import com.opensymphony.xwork2.ActionSupport;
 import ca.uqac.archi.dao.EmployeDAO;
 import ca.uqac.archi.model.Employe;
-public class LoginAction extends ActionSupport {
+
+import java.util.Map;
+import org.apache.struts2.interceptor.SessionAware;
+
+public class LoginAction extends ActionSupport implements SessionAware{
  
     private static final long serialVersionUID = 1L;
     EmployeDAO dao = new EmployeDAO();
     Employe user;
+    
+    private Map<String, Object> session;
 
     @Override
     public void validate() {
@@ -41,6 +47,9 @@ public class LoginAction extends ActionSupport {
             user = dao.find(user.getMail(), user.getPassword());
 
             if (user != null && user.getMail() != null) {
+                session.put("nom",user.getNom());
+                session.put("prenom",user.getPrenom());
+                session.put("admin",user.isIsAdmin());
                 return SUCCESS;
             } else {
                 this.addActionError("Combinaison email / mot de passe invalide");
@@ -58,4 +67,9 @@ public class LoginAction extends ActionSupport {
     public void setUser(Employe user) {
         this.user = user;
     }    
+
+    @Override
+    public void setSession(Map<String, Object> session) {
+      this.session=session;
+    }
 }

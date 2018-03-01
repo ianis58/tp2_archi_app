@@ -60,7 +60,7 @@
             <%@ include file="template/nav.jsp" %>
             
             <div class="container body-content form-horizontal well">
-                <b>Bienvenue, <s:property value="user.prenom"/> <s:property value="user.nom"/></b>
+                <b>Bienvenue, <s:property value="%{#attr['prenom']}"/> <s:property value="%{#attr['nom']}"/></b>
             </div>
             
             <%@ include file="template/footer.jsp" %>

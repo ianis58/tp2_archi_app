@@ -19,8 +19,8 @@
 
             <s:actionerror/>
             <s:form action="addCategorie" method="post" style="align: center">
-                <s:textfield name="cat.nom" label="Nom"/>
-                <s:submit value="Add Categorie" align="center"/>
+                    <s:textfield name="cat.nom" label="Nom"/>
+                    <s:submit value="Add Categorie" align="center"/>
             </s:form>
 
             <s:if test="listCategories.size() > 0">
