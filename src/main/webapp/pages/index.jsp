@@ -62,8 +62,8 @@
             <div class="container body-content form-horizontal well">
                 
 
-                <div class="row">
-                        <div class="text-center">
+                <div class="row top-buffer">
+                        <div class="col-md-10 mx-auto text-center">
 
                                 <h1 class="title">Gestion Atelier Mécanique</h1>
                                 <h2 class="subtitle">Méc'atelier</h2>
@@ -73,7 +73,7 @@
                                     Dans cette application vous pouvez gérer les stocks de votre atelier mécanique. 
                                 </h3>
 
-                                <div class="row">
+                                <div class="row top-buffer">
                                     <div class="col-md-4">
                                         <a href="#" class="btn btn-primary active">Article</a>
                                     </div>
@@ -84,7 +84,7 @@
                                         <a href="managesouscategories" class="btn btn-primary active">Sous Catégorie</a>
                                     </div>
                                 </div>
-                                <div class="row">
+                                <div class="row top-buffer">
                                     <div class="col-md-4">
                                         <a href="#" class="btn btn-primary active">Stock</a>
                                     </div>

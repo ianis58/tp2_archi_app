@@ -18,3 +18,11 @@
 i.icon-white {
     color: white;
 }
+
+.top-buffer { 
+    margin-top:20px; 
+}
+
+.left-buffer { 
+    margin-left:20px; 
+}
