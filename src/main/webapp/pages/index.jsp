@@ -5,8 +5,8 @@
     <head>
         <%@ include file="template/head.jsp" %>
     </head>
-
-    <s:if test="user == null">
+    
+    <s:if test="%{#attr['nom'] == null}">
         <body class="bg-dark">
             <div class="container py-5">
                 <div class="row">
@@ -63,7 +63,7 @@
                 
 
                 <div class="row">
-                        <div class="col-md-10 col-lg-10 col-md-offset-1 col-lg-offset-1 text-center mx-auto">
+                        <div class="text-center">
 
                                 <h1 class="title">Gestion Atelier Mécanique</h1>
                                 <h2 class="subtitle">Méc'atelier</h2>

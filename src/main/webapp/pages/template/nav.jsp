@@ -23,10 +23,13 @@
                 <a class="nav-link" href="#">Recherches</a>
             </li>
         </ul>
-        <s:if test="!user.mail.isEmpty()">
             <span class="navbar-text">
-                Bonjour,  <s:property value="%{#attr['prenom']}"/> <s:property value="%{#attr['nom']}"/>!
+                Bonjour,  <s:property value="%{#attr['prenom']}"/> <s:property value="%{#attr['nom']}"/>!   
             </span>
-        </s:if>
+            <span>
+                <s:url var="logout" action="logout">
+                </s:url>
+                <s:a href="%{logout}" onclick="return confirm('Etes-vous sûr de vouloir vous déconnecter ?')"><i class="material-icons icon-white">exit_to_app</i></s:a>
+            </span>
     </div>
 </nav>

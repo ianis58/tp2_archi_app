@@ -17,6 +17,9 @@
             <result name="success">pages/index.jsp</result>
             <result name="input">pages/index.jsp</result>
         </action>
+        <action name="logout" class="ca.uqac.archi.action.LoginAction" method="logout">
+            <result>pages/index.jsp</result>
+        </action>
 
         <!-- Users / Employés CRUD -->
         <action name="manageusers" class="ca.uqac.archi.action.ManageUsersAction">

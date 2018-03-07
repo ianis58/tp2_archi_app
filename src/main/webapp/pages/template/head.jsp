@@ -22,3 +22,12 @@
 
 <!--our scripts-->
 <script src="js/script.js"></script>
+
+<% 
+    if(session.getAttribute("nom") == null && 
+            !request.getRequestURI().substring(request.getRequestURI().lastIndexOf("/")+1).equals("")
+            && !request.getRequestURI().substring(request.getRequestURI().lastIndexOf("/")+1).equals("index.jsp")){
+        //System.out.println(request.getRequestURI().substring(request.getRequestURI().lastIndexOf("/")+1));
+        response.sendRedirect("login");
+        
+    } %>
