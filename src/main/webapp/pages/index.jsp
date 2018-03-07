@@ -65,24 +65,25 @@
                 <div class="row top-buffer">
                         <div class="col-md-10 mx-auto text-center">
 
-                                <h1 class="title">Gestion Atelier Mécanique</h1>
-                                <h2 class="subtitle">Méc'atelier</h2>
+                            <img src="images/favicon.ico" class="rounded mx-auto d-block">
+                            <h1 class="top-buffer title">Gestion Atelier Mécanique</h1>
+                            <h2 class="top-buffer subtitle">Méc'atelier</h2>
 
-                                <h3 class="tagline">
-                                    <b>Bienvenue, <s:property value="%{#attr['prenom']}"/> <s:property value="%{#attr['nom']}"/></b> <br />
-                                    Dans cette application vous pouvez gérer les stocks de votre atelier mécanique. 
-                                </h3>
-                                    
-                                <div class="row top-buffer btn-group btn-group-justified" role="group">
-                                    <a href="#" class="btn btn-primary" role="button">Article</a>
-                                    <a href="categorieCRUD" class="btn btn-primary" role="button">Catégorie</a>
-                                    <a href="managesouscategories" class="btn btn-primary" role="button">Sous Catégorie</a>
-                                </div>
-                                <div class="row top-buffer btn-group btn-group-justified" role="group">
-                                    <a href="#" class="btn btn-primary" role="button" onclick="return confirm('Ce lien n\'est pas disponible !')">Stock</a>
-                                    <a href="#" class="btn btn-primary" role="button">Recherche Article</a>
-                                    <a href="#" class="btn btn-primary" role="button">Recherche Stock</a>
-                                </div> 
+                            <h3 class="top-buffer tagline">
+                                <b>Bienvenue, <s:property value="%{#attr['prenom']}"/> <s:property value="%{#attr['nom']}"/></b> <br />
+                                Dans cette application vous pouvez gérer les stocks de votre atelier mécanique. 
+                            </h3>
+
+                            <div class="row top-buffer btn-group btn-group-justified" role="group">
+                                <a href="#" class="btn btn-primary" role="button">Article</a>
+                                <a href="categorieCRUD" class="btn btn-primary" role="button">Catégorie</a>
+                                <a href="managesouscategories" class="btn btn-primary" role="button">Sous Catégorie</a>
+                            </div>
+                            <div class="row top-buffer btn-group btn-group-justified" role="group">
+                                <a href="#" class="btn btn-primary" role="button" onclick="return confirm('Ce lien n\'est pas disponible !')">Stock</a>
+                                <a href="#" class="btn btn-primary" role="button">Recherche Article</a>
+                                <a href="#" class="btn btn-primary" role="button">Recherche Stock</a>
+                            </div> 
 
                         </div>
                 </div>
