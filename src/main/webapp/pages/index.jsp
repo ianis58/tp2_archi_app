@@ -59,7 +59,7 @@
         <body>
             <%@ include file="template/nav.jsp" %>
             
-            <div class="container body-content form-horizontal well">
+            <div class="container">
                 
 
                 <div class="row top-buffer">
@@ -72,29 +72,17 @@
                                     <b>Bienvenue, <s:property value="%{#attr['prenom']}"/> <s:property value="%{#attr['nom']}"/></b> <br />
                                     Dans cette application vous pouvez gérer les stocks de votre atelier mécanique. 
                                 </h3>
-
-                                <div class="row top-buffer">
-                                    <div class="col-md-4">
-                                        <a href="#" class="btn btn-primary active">Article</a>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <a href="categorieCRUD" class="btn btn-primary active">Catégorie</a>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <a href="managesouscategories" class="btn btn-primary active">Sous Catégorie</a>
-                                    </div>
+                                    
+                                <div class="row top-buffer btn-group btn-group-justified" role="group">
+                                    <a href="#" class="btn btn-primary" role="button">Article</a>
+                                    <a href="categorieCRUD" class="btn btn-primary" role="button">Catégorie</a>
+                                    <a href="managesouscategories" class="btn btn-primary" role="button">Sous Catégorie</a>
                                 </div>
-                                <div class="row top-buffer">
-                                    <div class="col-md-4">
-                                        <a href="#" class="btn btn-primary active">Stock</a>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <a href="#" class="btn btn-primary active">Recherche Article</a>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <a href="#" class="btn btn-primary active">Recherche Stock</a>
-                                    </div>
-                                </div>
+                                <div class="row top-buffer btn-group btn-group-justified" role="group">
+                                    <a href="#" class="btn btn-primary" role="button" onclick="return confirm('Ce lien n\'est pas disponible !')">Stock</a>
+                                    <a href="#" class="btn btn-primary" role="button">Recherche Article</a>
+                                    <a href="#" class="btn btn-primary" role="button">Recherche Stock</a>
+                                </div> 
 
                         </div>
                 </div>

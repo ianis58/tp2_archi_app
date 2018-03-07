@@ -16,12 +16,24 @@
 
         <div class="container body-content form-horizontal well">
             <h1>Gestion des Catégories</h1>
+            
+            <div class="row">
+                <div class="col-md-10 mx-auto">
+                    <s:actionerror/>
+                    <s:form action="addCategorie" method="post" class="form">
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="nom">Nom</label>
+                                <s:textfield name="cat.nom" id="nom" class="form-control form-control-sm rounded-0"/>
+                            </div>
 
-            <s:actionerror/>
-            <s:form action="addCategorie" method="post" style="align: center">
-                    <s:textfield name="cat.nom" label="Nom"/>
-                    <s:submit value="Add Categorie" align="center"/>
-            </s:form>
+                            <div class="form-group col-md-6">
+                                <s:submit value="Ajouter catégorie" class="btn btn-success btn-lg float-right"/>
+                            </div>
+                        </div>
+                    </s:form>
+                </div>
+            </div>
 
             <s:if test="listCategories.size() > 0">
                 <div>
@@ -43,13 +55,13 @@
                                     <s:param name="id" value="%{#categorie.idCategorie}"></s:param>
                                     <s:param name="nom" value="%{#categorie.nom}"></s:param>
 				</s:url>
-                                <s:a href="%{editURL}">Modifier</s:a>
+                                <s:a href="%{editURL}"><i class="material-icons">mode_edit</i></s:a>
                             </td>
                             <td>
                                 <s:url var="deleteURL" action="deleteCategorie">
                                     <s:param name="id" value="%{#categorie.idCategorie}"></s:param>
 				</s:url>
-                                <s:a href="%{deleteURL}" onclick="return confirm('Etes-vous sûr de vouloir supprimer cette catégorie ?')">Supprimer</s:a>
+                                <s:a href="%{deleteURL}" onclick="return confirm('Etes-vous sûr de vouloir supprimer cette catégorie ?')"><i class="material-icons">delete_forever</i></s:a>
                             </td>
                         </tr>
                         </s:iterator>
