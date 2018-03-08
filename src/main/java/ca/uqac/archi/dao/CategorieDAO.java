@@ -6,9 +6,11 @@
 package ca.uqac.archi.dao;
 
 import ca.uqac.archi.model.Categorie;
+import ca.uqac.archi.model.Employe;
 import ca.uqac.archi.util.HibernateUtil;
 import java.util.List;
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -17,6 +19,23 @@ import org.hibernate.Transaction;
  * @author almes
  */
 public class CategorieDAO extends HibernateUtil{
+    
+    @SuppressWarnings("unchecked")
+    public Categorie find(String nom) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        //session.beginTransaction();
+        String sql = " from Categorie c where c.nom=:nom";
+        Query query = session.createQuery(sql);
+        query.setParameter("nom", nom);
+        List<Categorie> list = (List<Categorie>) query.list();
+        session.close();
+        if (list.size() > 0) {
+            return list.get(0);
+        }
+        
+        return new Categorie(); //dumb employe meaning no matching credentials found
+    }
+    
     public void add(Categorie cat) {  
         Session session = HibernateUtil.getSessionFactory().openSession();  
         String fname = cat.getNom();  
