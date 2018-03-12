@@ -16,7 +16,7 @@ import org.apache.struts2.ServletActionContext;
 
 /**
  *
- * @author almes
+ * @author nruj
  */
 public class ArticleAction extends ActionSupport{
     private static final long serialVersionUID = 1L;
@@ -73,40 +73,6 @@ public class ArticleAction extends ActionSupport{
             return INPUT;
         }
     }
-
-    public String update() throws ParseException{
-        //System.out.println(getCat());
-        String val = customValidate();
-        if(val == SUCCESS){
-            try {
-             dao.update(cat);
-             cat = null;
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-            listCategories = dao.list();
-            return SUCCESS;
-        }else{
-            listCategories = dao.list();
-            return INPUT;
-        }
-        
-    }
-
-    public String delete() {
-        HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get( ServletActionContext.HTTP_REQUEST);
-        System.out.println("id value="+Long.parseLong( request.getParameter("id")));
-        this.setId(Integer.parseInt(request.getParameter("id")));
-        try {
-             dao.deleteCategorie(id);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        listCategories = dao.list();
-        return SUCCESS;
-    }
-
     public Article getArt() {
         return art;
     }

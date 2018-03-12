@@ -18,7 +18,7 @@ import org.hibernate.Transaction;
 
 /**
  *
- * @author almes
+ * @author nruj
  */
 public class ArticleDAO extends HibernateUtil{
     
