@@ -20,7 +20,7 @@
                 <a class="nav-link" href="manageusers">Utilisateurs</a>
             </li>
             <li class='nav-item <s:if test="action == \"search\"">active</s:if>'>
-                <a class="nav-link" href="#">Recherches</a>
+                <a class="nav-link" href="search">Recherches</a>
             </li>
         </ul>
             <span class="navbar-text">

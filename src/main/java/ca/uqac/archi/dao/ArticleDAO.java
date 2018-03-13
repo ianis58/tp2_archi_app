@@ -101,7 +101,7 @@ public class ArticleDAO extends HibernateUtil{
       }        
   
 public int getNewCategorieId() {  
-             Session session = HibernateUtil.getSessionFactory().getCurrentSession();  
+             Session session = HibernateUtil.getSessionFactory().openSession();  
              Transaction trans = session.beginTransaction();  
      String query = "SELECT max(c.id) FROM Categorie c";  
      List list = session.createQuery(query).list();  
@@ -129,5 +129,29 @@ public List<Article> list(){
                 session.close();  
         return DaoAllArticles;         
           
-    }  
+    } 
+public List<Article> recherche (String nomArticle){
+       Session session = HibernateUtil.getSessionFactory().openSession();
+       Transaction transaction = null;
+       try {
+            transaction = session.beginTransaction();
+            Query query = session.createQuery("FROM Article WHERE nom like :nomArticle");
+            query.setParameter("nomArticle", nomArticle);
+            List<Article> lstArticle = (List<Article>) query.list();
+            transaction.commit();
+            return lstArticle;
+       }catch(Exception e){
+           if(!(transaction == null)){
+               transaction.rollback();
+           }
+       }finally{
+           session.close();
+       }
+        
+      /* List article = session.createCriteria(Article.class)
+               .add(Restrictions.eq("nom", nom))
+               .list();*/
+       
+       return null;
+   }
 }

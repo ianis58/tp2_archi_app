@@ -88,6 +88,14 @@
             <result name="success">pages/categorieCRUD.jsp</result>
             <result name="input">pages/categorieCRUD.jsp</result> 
         </action> 
+        <!-- Categorie search -->
+        <action name="search" class="ca.uqac.archi.action.SearchAction">
+            <result>pages/search.jsp</result>
+        </action>
+        <action name="process-recherche" class="ca.uqac.archi.action.SearchAction" method="processSimpleSearch">  
+            <result name="success">pages/search.jsp</result>
+        </action>
+        
     </package>
 
 </struts>
