@@ -4,8 +4,9 @@
   <session-factory>
     <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/aaetp?zeroDateTimeBehavior=convertToNull</property>
+    <property name="hibernate.connection.url">jdbc:mysql://54.39.23.35:3306/aaetp?zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.username">root</property>
+    <property name="hibernate.connection.password">ateliermecaniquearchiappentreprise</property>
     <mapping resource="ca/uqac/archi/model/Emplacement.hbm.xml"/>
     <mapping resource="ca/uqac/archi/model/Stock.hbm.xml"/>
     <mapping resource="ca/uqac/archi/model/Employe.hbm.xml"/>

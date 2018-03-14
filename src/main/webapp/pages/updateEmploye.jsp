@@ -30,11 +30,6 @@
                             </div>
 
                             <div class="form-group col-md-4">
-                                <label for="password">Mot de passe</label>
-                                <s:textfield name="employe.password" id="password" class="form-control form-control-sm rounded-0"/>
-                            </div>
-
-                            <div class="form-group col-md-4">
                                 <label for="prenom">Prénom</label>
                                 <s:textfield name="employe.prenom" id="prenom" class="form-control form-control-sm rounded-0"/>
                             </div>
@@ -72,6 +67,7 @@
 
                             <div class="form-group col-md-2">
                                 <s:hidden name="employe.idPersonne" value="%{#parameters.id}" label="Primary Key" />
+                                <s:hidden name="employe.password" />
                                 <s:submit value="Modifier" class="btn btn-success btn-lg float-right"/>
                             </div>
                         </div>

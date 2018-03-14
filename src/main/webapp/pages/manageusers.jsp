@@ -22,22 +22,17 @@
                             </div>
 
                             <div class="form-group col-md-4">
-                                <label for="password">Mot de passe</label>
-                                <s:textfield name="employe.password" id="password" class="form-control form-control-sm rounded-0"/>
-                            </div>
-
-                            <div class="form-group col-md-4">
                                 <label for="prenom">Prénom</label>
                                 <s:textfield name="employe.prenom" id="prenom" class="form-control form-control-sm rounded-0"/>
                             </div>
-                        </div>
-
-                        <div class="row">
+                            
                             <div class="form-group col-md-4">
                                 <label for="nom">Nom</label>
                                 <s:textfield name="employe.nom" id="nom" class="form-control form-control-sm rounded-0"/>
                             </div>
+                        </div>
 
+                        <div class="row">
                             <div class="form-group col-md-4">
                                 <label for="adresse">Adresse</label>
                                 <s:textfield name="employe.adresse" id="adresse" class="form-control form-control-sm rounded-0"/>
@@ -71,7 +66,6 @@
                     <tr>
                         <th scope="col">id</th>
                         <th scope="col">Mail</th>
-                        <th scope="col">Mot de passe</th>
                         <th scope="col">Admin</th>
                         <th scope="col">Prénom</th>
                         <th scope="col">Nom</th>
@@ -85,7 +79,6 @@
                     <tr>
                         <th scope="row"><s:property value="#employe.idPersonne" /></td>
                         <td><s:property value="#employe.mail" /></td>
-                        <td><s:property value="#employe.password" /></td>
                         <td><s:if test="#employe.isAdmin == 1">Oui</s:if>
                             <s:if test="#employe.isAdmin == 0">Non</s:if></td>
                         <td><s:property value="#employe.prenom" /></td>
