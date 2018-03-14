@@ -58,6 +58,14 @@ public class LoginAction extends ActionSupport implements SessionAware{
         }
         return INPUT;
     }
+    
+    public String logout(){
+        session.remove("nom");
+        session.remove("prenom");
+        session.remove("admin");
+        
+        return SUCCESS;
+    }
      
  
     public Employe getUser() {

@@ -5,8 +5,8 @@
     <head>
         <%@ include file="template/head.jsp" %>
     </head>
-
-    <s:if test="user == null">
+    
+    <s:if test="%{#attr['nom'] == null}">
         <body class="bg-dark">
             <div class="container py-5">
                 <div class="row">
@@ -59,8 +59,34 @@
         <body>
             <%@ include file="template/nav.jsp" %>
             
-            <div class="container body-content form-horizontal well">
-                <b>Bienvenue, <s:property value="%{#attr['prenom']}"/> <s:property value="%{#attr['nom']}"/></b>
+            <div class="container">
+                
+
+                <div class="row top-buffer">
+                        <div class="col-md-10 mx-auto text-center">
+
+                            <img src="images/favicon.ico" class="rounded mx-auto d-block">
+                            <h1 class="top-buffer title">Gestion Atelier Mécanique</h1>
+                            <h2 class="top-buffer subtitle">Méc'atelier</h2>
+
+                            <h3 class="top-buffer tagline">
+                                <b>Bienvenue, <s:property value="%{#attr['prenom']}"/> <s:property value="%{#attr['nom']}"/></b> <br />
+                                Dans cette application vous pouvez gérer les stocks de votre atelier mécanique. 
+                            </h3>
+
+                            <div class="row top-buffer btn-group btn-group-justified" role="group">
+                                <a href="#" class="btn btn-primary" role="button">Article</a>
+                                <a href="categorieCRUD" class="btn btn-primary" role="button">Catégorie</a>
+                                <a href="managesouscategories" class="btn btn-primary" role="button">Sous Catégorie</a>
+                            </div>
+                            <div class="row top-buffer btn-group btn-group-justified" role="group">
+                                <a href="#" class="btn btn-primary" role="button" onclick="return confirm('Ce lien n\'est pas disponible !')">Stock</a>
+                                <a href="#" class="btn btn-primary" role="button">Recherche Article</a>
+                                <a href="#" class="btn btn-primary" role="button">Recherche Stock</a>
+                            </div> 
+
+                        </div>
+                </div>
             </div>
             
             <%@ include file="template/footer.jsp" %>

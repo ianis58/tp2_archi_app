@@ -37,33 +37,63 @@ public class CategorieAction extends ActionSupport{
 
         listCategories = dao.list();
 
-        int count = listCategories.size();
-        System.out.println("catList Size " + count);
+        /*int count = listCategories.size();
+        System.out.println("catList Size " + count);*/
         //System.out.println("execute called");
         return SUCCESS;
     }
+    
+    // fonction de validation de champs
+    public String customValidate(){
+        String val = SUCCESS;
+        Categorie catVerif = dao.find(cat.getNom());
+        if(cat.getNom().length() < 1 || cat.getNom().equals(" ")){
+            this.addActionError("Entrez un nom svp !");
+            val = INPUT;
+        }
+        if(catVerif.getNom() != null){
+            this.addActionError("Ce nom existe déjà !");
+            val = INPUT;
+        }
+        catVerif = null;
+        return val;
+    }
 
     public String add() throws ParseException {
-        System.out.println(cat);
-        try {
-             dao.add(cat);
-        } catch (Exception e) {
-            e.printStackTrace();
+        //System.out.println(cat);
+        String val = customValidate();
+        if(val == SUCCESS){
+            try {
+                dao.add(cat);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            listCategories = dao.list();
+            return SUCCESS;
+        }else{
+            listCategories = dao.list();
+            return INPUT;
         }
-        listCategories = dao.list();
-        return SUCCESS;
     }
 
     public String update() throws ParseException{
-        System.out.println(getCat());
-        try {
+        //System.out.println(getCat());
+        String val = customValidate();
+        if(val == SUCCESS){
+            try {
              dao.update(cat);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+             cat = null;
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
-        listCategories = dao.list();
-        return SUCCESS;
+            listCategories = dao.list();
+            return SUCCESS;
+        }else{
+            listCategories = dao.list();
+            return INPUT;
+        }
+        
     }
 
     public String delete() {

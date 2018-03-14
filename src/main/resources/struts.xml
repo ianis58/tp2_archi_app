@@ -17,6 +17,9 @@
             <result name="success">pages/index.jsp</result>
             <result name="input">pages/index.jsp</result>
         </action>
+        <action name="logout" class="ca.uqac.archi.action.LoginAction" method="logout">
+            <result>pages/index.jsp</result>
+        </action>
 
         <!-- Users / Employés CRUD -->
         <action name="manageusers" class="ca.uqac.archi.action.ManageUsersAction">
@@ -69,21 +72,30 @@
         
         <!-- Action list for category -->
         <action name="addCategorie" class="ca.uqac.archi.action.CategorieAction" method="add">  
-            <result name="success" type="chain">categorieCRUD</result>  
-            <result name="input" type="chain">categorieCRUD</result>  
+            <result name="success">pages/categorieCRUD.jsp</result>
+            <result name="input">pages/categorieCRUD.jsp</result>
         </action>
 
         <action name="deleteCategorie" method="delete" class="ca.uqac.archi.action.CategorieAction">
-            <result name="success" type="redirect">categorieCRUD</result>
+            <result name="success">pages/categorieCRUD.jsp</result>
         </action>
 
         <action name="editCategorieLink" class="ca.uqac.archi.action.CategorieAction">  
-            <result name="success">pages/updateCategorie.jsp</result>  
+            <result name="success">pages/updateCategorie.jsp</result>
         </action>
 
         <action name="updateCategorie" class="ca.uqac.archi.action.CategorieAction" method="update">  
-            <result name="success" type="chain">categorieCRUD</result> 
+            <result name="success">pages/categorieCRUD.jsp</result>
+            <result name="input">pages/categorieCRUD.jsp</result> 
         </action> 
+        <!-- Categorie search -->
+        <action name="search" class="ca.uqac.archi.action.SearchAction">
+            <result>pages/search.jsp</result>
+        </action>
+        <action name="process-recherche" class="ca.uqac.archi.action.SearchAction" method="processSimpleSearch">  
+            <result name="success">pages/search.jsp</result>
+        </action>
+        
     </package>
 
 </struts>

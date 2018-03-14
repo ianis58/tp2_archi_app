@@ -20,13 +20,16 @@
                 <a class="nav-link" href="manageusers">Utilisateurs</a>
             </li>
             <li class='nav-item <s:if test="action == \"search\"">active</s:if>'>
-                <a class="nav-link" href="#">Recherches</a>
+                <a class="nav-link" href="search">Recherches</a>
             </li>
         </ul>
-        <s:if test="!user.mail.isEmpty()">
             <span class="navbar-text">
-                Bonjour,  <s:property value="%{#attr['prenom']}"/> <s:property value="%{#attr['nom']}"/>!
+                Bonjour,  <s:property value="%{#attr['prenom']}"/> <s:property value="%{#attr['nom']}"/>!   
             </span>
-        </s:if>
+            <span class="left-buffer">
+                <s:url var="logout" action="logout">
+                </s:url>
+                <s:a href="%{logout}" onclick="return confirm('Etes-vous sûr de vouloir vous déconnecter ?')"><i class="material-icons icon-white">exit_to_app</i></s:a>
+            </span>
     </div>
 </nav>
