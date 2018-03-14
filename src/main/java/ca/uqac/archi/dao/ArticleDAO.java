@@ -89,7 +89,7 @@ public class ArticleDAO extends HibernateUtil{
      List<Article> AllArticles = null;
      Session session = HibernateUtil.getSessionFactory().openSession();
      session.beginTransaction();
-     Query query = session.createSQLQuery("Select * from Article");
+     Query query = session.createQuery(" from Article");
      AllArticles = (List<Article>) query.list();
      System.err.println(AllArticles);
      System.err.println(query);
