@@ -96,6 +96,32 @@
             <result name="success">pages/search.jsp</result>
         </action>
         
+        <!-- CRUD Article -->
+        
+        <action name="articleCRUD" class="ca.uqac.archi.action.ArticleAction">
+            <result>pages/articleCRUD.jsp</result>
+        </action>
+        
+        <!-- Action list for article -->
+        <action name="addArticle" class="ca.uqac.archi.action.ArticleAction" method="add">  
+            <result name="success">pages/articleCRUD.jsp</result>
+            <result name="input">pages/articleCRUD.jsp</result>
+        </action>
+
+        <action name="deleteArticle" method="delete" class="ca.uqac.archi.action.ArticleAction">
+            <result name="success">pages/articleCRUD.jsp</result>
+        </action>
+        <!-- 
+        <action name="editArticleLink" class="ca.uqac.archi.action.ArticleAction">  
+            <result name="success">pages/updateArticle.jsp</result>
+        </action>
+        -->
+        <action name="updateArticle" class="ca.uqac.archi.action.ArticleAction" method="update">  
+            <result name="success">pages/articleCRUD.jsp</result>
+            <result name="input">pages/articleCRUD.jsp</result> 
+        </action> 
+        
+        
     </package>
 
 </struts>

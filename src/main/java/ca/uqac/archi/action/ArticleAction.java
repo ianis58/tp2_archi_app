@@ -58,11 +58,10 @@ public class ArticleAction extends ActionSupport{
     }
 
     public String add() throws ParseException {
-        //System.out.println(cat);
         String val = customValidate();
         if(val == SUCCESS){
             try {
-                //dao.add(art);
+                dao.add(art);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -77,15 +76,15 @@ public class ArticleAction extends ActionSupport{
         return art;
     }
 
-    public void setCat(Article art) {
+    public void setArt(Article art) {
         this.art = art;
     }
 
-   public List<Article> getListCategories() {
+   public List<Article> getListArticles() {
         return listArticles;
     }
 
-    public void setListCategories(List<Article> listArticles) {
+    public void setListArticles(List<Article> listArticles) {
         this.listArticles = listArticles;
     }
 
