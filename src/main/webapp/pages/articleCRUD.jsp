@@ -79,10 +79,7 @@
                                     <s:param name="nom" value="%{#article.marque}"></s:param>
                                     <s:param name="nom" value="%{#article.reference}"></s:param>
                                     <s:param name="nom" value="%{#article.prix}"></s:param>
-                                    <s:param name="nom" value="%{#article.description}"></s:param>
-                                    <s:param name="nom" value="%{#article.lignecommandes}"></s:param>
-                                    <s:param name="nom" value="%{#article.stocks}"></s:param>
-                                    <s:param name="nom" value="%{#article.vehicules}"></s:param>  
+                                    <s:param name="nom" value="%{#article.description}"></s:param> 
                                     <s:param name="nom" value="%{#article.souscategories}"></s:param>
 				</s:url>
                                 <s:a href="%{editURL}"><i class="material-icons">mode_edit</i></s:a>
@@ -90,6 +87,12 @@
                             <td>
                                 <s:url var="deleteURL" action="deleteArticle">
                                     <s:param name="id" value="%{#article.idArticle}"></s:param>
+                                    <s:param name="nom" value="%{#article.nom}"></s:param>
+                                    <s:param name="nom" value="%{#article.marque}"></s:param>
+                                    <s:param name="nom" value="%{#article.reference}"></s:param>
+                                    <s:param name="nom" value="%{#article.prix}"></s:param>
+                                    <s:param name="nom" value="%{#article.description}"></s:param>
+                                    <s:param name="nom" value="%{#article.souscategories}"></s:param>
 				</s:url>
                                 <s:a href="%{deleteURL}" onclick="return confirm('Etes-vous sûr de vouloir supprimer cet article ?')"><i class="material-icons">delete_forever</i></s:a>
                             </td>

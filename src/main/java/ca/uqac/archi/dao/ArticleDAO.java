@@ -84,7 +84,18 @@ public class ArticleDAO extends HibernateUtil{
             session.close();  
       }        
   
-  
+ public List<Article> list()
+ {
+     List<Article> AllArticles = null;
+     Session session = HibernateUtil.getSessionFactory().openSession();
+     session.beginTransaction();
+     Query query = session.createSQLQuery("Select * from Article");
+     AllArticles = (List<Article>) query.list();
+     System.err.println(AllArticles);
+     System.err.println(query);
+     return AllArticles;
+ }
+ /*     
 public List<Article> list(){  
      Session session = HibernateUtil.getSessionFactory().openSession();  
           List<Article> DaoAllArticles = null;         
@@ -102,6 +113,8 @@ public List<Article> list(){
         return DaoAllArticles;         
           
     } 
+ */
+ 
 public List<Article> recherche (String nomArticle){
        Session session = HibernateUtil.getSessionFactory().openSession();
        Transaction transaction = null;
