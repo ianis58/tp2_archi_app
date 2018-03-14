@@ -25,14 +25,19 @@
                                 <label for="prenom">Prénom</label>
                                 <s:textfield name="employe.prenom" id="prenom" class="form-control form-control-sm rounded-0"/>
                             </div>
-                            
+
                             <div class="form-group col-md-4">
-                                <label for="nom">Nom</label>
-                                <s:textfield name="employe.nom" id="nom" class="form-control form-control-sm rounded-0"/>
+                                <label for="password">Mot de passe</label>
+                                <s:password name="employe.password" id="password" class="form-control form-control-sm rounded-0"/>
                             </div>
                         </div>
 
                         <div class="row">
+                            <div class="form-group col-md-4">
+                                <label for="nom">Nom</label>
+                                <s:textfield name="employe.nom" id="nom" class="form-control form-control-sm rounded-0"/>
+                            </div>
+                            
                             <div class="form-group col-md-4">
                                 <label for="adresse">Adresse</label>
                                 <s:textfield name="employe.adresse" id="adresse" class="form-control form-control-sm rounded-0"/>
