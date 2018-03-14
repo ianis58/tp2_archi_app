@@ -11,7 +11,7 @@
         <property name="nom" type="string">
             <column name="Nom" />
         </property>
-        <set name="categories" table="souscategorie_categorie" inverse="false" lazy="true" fetch="select">
+        <set name="categories" table="souscategorie_categorie" inverse="false" lazy="false" fetch="select">
             <key>
                 <column name="SousCategorieIdSousCategorie" not-null="true" />
             </key>
@@ -19,7 +19,7 @@
                 <column name="CategorieIdCategorie" not-null="true" />
             </many-to-many>
         </set>
-        <set name="articles" table="souscategorie_article" inverse="false" lazy="true" fetch="select">
+        <set name="articles" table="souscategorie_article" inverse="false" lazy="false" fetch="select">
             <key>
                 <column name="SousCategorieIdSousCategorie" not-null="true" />
             </key>

@@ -6,6 +6,7 @@
 package ca.uqac.archi.dao;
 
 import ca.uqac.archi.model.Categorie;
+import ca.uqac.archi.model.Employe;
 import ca.uqac.archi.util.HibernateUtil;
 import java.util.List;
 import org.hibernate.HibernateException;
@@ -17,6 +18,22 @@ import org.hibernate.Transaction;
  * @author almes
  */
 public class CategorieDAO extends HibernateUtil{
+    /**
+    * CRUD: READ
+    * Permet de récupérer une Categorie via son ID
+    * @param id
+    * @return
+    */
+    public Categorie find(Integer id){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+
+        Categorie categorie = (Categorie) session.get(Categorie.class, id);
+
+        session.close();
+
+        return categorie;
+    }
+    
     public void add(Categorie cat) {  
         Session session = HibernateUtil.getSessionFactory().openSession();  
         String fname = cat.getNom();  
@@ -84,7 +101,7 @@ public int getNewCategorieId() {
     }  
   
   
-public List<Categorie> list(){  
+public List<Categorie> list(){
      Session session = HibernateUtil.getSessionFactory().openSession();  
           List<Categorie> DaoAllCategorie = null;         
         session.beginTransaction();       

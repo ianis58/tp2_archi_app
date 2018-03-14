@@ -23,13 +23,13 @@
         <property name="description" type="string">
             <column name="Description" />
         </property>
-        <set name="lignecommandes" table="lignecommande" inverse="true" lazy="true" fetch="select">
+        <set name="lignecommandes" table="lignecommande" inverse="true" lazy="false" fetch="select">
             <key>
                 <column name="ArticleIdArticle" not-null="true" />
             </key>
             <one-to-many class="ca.uqac.archi.model.Lignecommande" />
         </set>
-        <set name="stocks" table="stock_article" inverse="false" lazy="true" fetch="select">
+        <set name="stocks" table="stock_article" inverse="false" lazy="false" fetch="select">
             <key>
                 <column name="ArticleIdArticle" not-null="true" />
             </key>
@@ -37,7 +37,7 @@
                 <column name="StockIdStock" not-null="true" />
             </many-to-many>
         </set>
-        <set name="vehicules" table="vehicule_article" inverse="false" lazy="true" fetch="select">
+        <set name="vehicules" table="vehicule_article" inverse="false" lazy="false" fetch="select">
             <key>
                 <column name="ArticleIdArticle" not-null="true" />
             </key>
@@ -45,7 +45,7 @@
                 <column name="VehiculeIdVehicule" not-null="true" />
             </many-to-many>
         </set>
-        <set name="souscategories" table="souscategorie_article" inverse="false" lazy="true" fetch="select">
+        <set name="souscategories" table="souscategorie_article" inverse="false" lazy="false" fetch="select">
             <key>
                 <column name="ArticleIdArticle" not-null="true" />
             </key>

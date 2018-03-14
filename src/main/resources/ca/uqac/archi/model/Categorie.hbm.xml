@@ -11,7 +11,7 @@
         <property name="nom" type="string">
             <column name="Nom" />
         </property>
-        <set name="souscategories" table="souscategorie_categorie" inverse="false" lazy="true" fetch="select">
+        <set name="souscategories" table="souscategorie_categorie" inverse="false" lazy="false" fetch="select">
             <key>
                 <column name="CategorieIdCategorie" not-null="true" />
             </key>

@@ -20,6 +20,17 @@
                                 <label for="nom">Nom de la sous catégorie</label>
                                 <s:textfield name="souscategorie.nom" id="nom" class="form-control form-control-sm rounded-0"/>
                             </div>
+                            <div class="form-group col-md-6">
+                                <s:select class="custom-select"
+                                    name="linkedCategoriesIds"
+                                    list="listAllCategories"
+                                    listKey="idCategorie"
+                                    listValue="nom"
+                                    multiple="true"
+                                    size="10"
+                                    required="true"
+                                />
+                            </div>
                         </div>
 
                         <div class="row">

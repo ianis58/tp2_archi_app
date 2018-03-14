@@ -29,6 +29,29 @@
                                 <s:textfield name="souscategorie.nom" id="nom" class="form-control form-control-sm rounded-0"/>
                             </div>
                         </div>
+ 
+                        <div class="form-group col-md-6">
+                            <s:select class="custom-select"
+                                name="linkedCategoriesIds"
+                                list="listAllCategories"
+                                listKey="idCategorie"
+                                listValue="nom"
+                                multiple="true"
+                                size="10"
+                                value="linkedCategoriesIds"
+                                required="true"
+                            />
+                            <!--
+                                name: nom de la variable qui sera envoyée vers l'action du form
+                                list: liste de toutes les Categorie
+                                listKey: attribut de la classe Categorie pour accéder aux ids de catégories possibles depuis listAllCategories
+                                listValue: attribut de la classe Categorie pour accéder aux noms de catégories possibles depuis listAllCategories
+                                multiple: permet de selectionner plusieurs catégories
+                                size: nombre de lignes pour définir la hauteur du select
+                                value: permet de re-sélectionner les catégories qui sont associées à cette sous catégorie en bdd
+                                required: pas sûr que ce soit utile puisque ça passe avec 0 catégories sélectionnées...
+                            -->
+                        </div>
 
                         <div class="row">
                             <div class="form-group col-md-2">

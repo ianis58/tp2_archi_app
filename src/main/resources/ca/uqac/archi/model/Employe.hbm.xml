@@ -29,7 +29,7 @@
         <property name="mail" type="string">
             <column name="Mail" />
         </property>
-        <set name="commandes" table="commande" inverse="true" lazy="true" fetch="select">
+        <set name="commandes" table="commande" inverse="true" lazy="false" fetch="select">
             <key>
                 <column name="EmployeIdPersonne" not-null="true" />
             </key>
