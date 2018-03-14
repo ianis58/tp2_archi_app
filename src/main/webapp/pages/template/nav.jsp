@@ -8,7 +8,7 @@
         <ul class="navbar-nav mr-auto">
             <!--add class "active" to make this item selected: <li class="nav-item active">-->
             <li class='nav-item <s:if test="action == \"managearticles\"">active</s:if>'>
-                <a class="nav-link" href="#">Articles</a>
+                <a class="nav-link" href="articleCRUD">Articles</a>
             </li>
             <li class='nav-item <s:if test="action == \"categorieCRUD\"">active</s:if>'>
                 <a class="nav-link" href="categorieCRUD">Catégories</a>
