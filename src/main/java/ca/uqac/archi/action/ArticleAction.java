@@ -6,7 +6,9 @@
 package ca.uqac.archi.action;
 
 import ca.uqac.archi.dao.ArticleDAO;
+import ca.uqac.archi.dao.SouscategorieDAO;
 import ca.uqac.archi.model.Article;
+import ca.uqac.archi.model.Souscategorie;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import freemarker.core.ParseException;
@@ -22,18 +24,24 @@ public class ArticleAction extends ActionSupport{
     private static final long serialVersionUID = 1L;
     private Article art = new Article();
     private List<Article> listArticles;
+    private List<Souscategorie> listSousCategories;
 
     private ArticleDAO dao;
+    private SouscategorieDAO souscat_dao;
     private String action;
+    private int nbr_stock;
+    
 
     public ArticleAction() {
          dao = new ArticleDAO();
+         souscat_dao = new SouscategorieDAO();
     }
 
     @Override
     public String execute() {
         action = "articleCRUD";
         listArticles = dao.list();
+        listSousCategories = souscat_dao.getAllSouscategories();
         return SUCCESS;
     }
     
@@ -94,5 +102,13 @@ public class ArticleAction extends ActionSupport{
 
     public void setAction(String action) {
         this.action = action;
+    }
+    
+     public int getNbr_stock() {
+        return nbr_stock;
+    }
+
+    public void setNbr_stock(int stock) {
+        nbr_stock = stock;
     }
 }

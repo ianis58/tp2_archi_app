@@ -32,16 +32,9 @@
                                 <s:textfield name="art.prix" id="prix" class="form-control form-control-sm rounded-0"/>
                                 <label for="description">Description</label>
                                 <s:textfield name="art.description" id="description" class="form-control form-control-sm rounded-0"/>
-                                <label for="ligneCommandes">Commandes</label>
-                                <s:textfield name="art.ligneCommandes" id="ligneCommandes" class="form-control form-control-sm rounded-0"/>
-                                <label for="stock">Stocks</label>
-                                <s:textfield name="art.stock" id="stock" class="form-control form-control-sm rounded-0"/>
-                                <label for="vehicules">Vehicules</label>
-                                <s:textfield name="art.vehicules" id="vehicules" class="form-control form-control-sm rounded-0"/>
                                 <label for="sousCat">Categorie</label>
-                                <s:textfield name="art.sousCat" id="sousCat" class="form-control form-control-sm rounded-0"/>
+                                <s:textfield name="listSousCat" id="listSousCat" class="form-control form-control-sm rounded-0"/>
                             </div>
-
                             <div class="form-group col-md-6">
                                 <s:submit value="Ajouter Article" class="btn btn-success btn-lg float-right"/>
                             </div>
@@ -60,10 +53,7 @@
                                 <th scope="col">Reference</th>
                                 <th scope="col">Prix</th>
                                 <th scope="col">Description</th>
-                                <th scope="col">Commandes</th>
                                 <th scope="col">Stocks</th>
-                                <th scope="col">Vehicules</th>
-                                <th scope="col">Catégorie</th>
                                 <th scope="col">Modifier</th>
                                 <th scope="col">Supprimer</th>
                             </tr>   

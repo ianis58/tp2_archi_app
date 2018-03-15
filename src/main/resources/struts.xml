@@ -111,11 +111,11 @@
         <action name="deleteArticle" method="delete" class="ca.uqac.archi.action.ArticleAction">
             <result name="success">pages/articleCRUD.jsp</result>
         </action>
-        <!-- 
+        
         <action name="editArticleLink" class="ca.uqac.archi.action.ArticleAction">  
             <result name="success">pages/updateArticle.jsp</result>
         </action>
-        -->
+        
         <action name="updateArticle" class="ca.uqac.archi.action.ArticleAction" method="update">  
             <result name="success">pages/articleCRUD.jsp</result>
             <result name="input">pages/articleCRUD.jsp</result> 
