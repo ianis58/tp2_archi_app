@@ -36,5 +36,17 @@ public class MarqueDAO extends HibernateUtil{
         return new Marque();
     }
     
+    public List<Marque> list()
+ {
+     List<Marque> AllMarques = null;
+     Session session = HibernateUtil.getSessionFactory().openSession();
+     session.beginTransaction();
+     Query query = session.createQuery(" from Marque");
+     AllMarques = (List<Marque>) query.list();
+     System.err.println(AllMarques);
+     System.err.println(query);
+     return AllMarques;
+ }
+    
    
 }

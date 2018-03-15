@@ -25,16 +25,32 @@
                                 <label for="nom">Nom</label>
                                 <s:textfield name="art.nom" id="nom" class="form-control form-control-sm rounded-0"/>
                                 <label for="marque">Marque</label>
-                                <s:textfield name="art.marque" id="marque" class="form-control form-control-sm rounded-0"/>
-                                <label for="ref">Reference</label>
+                                <div class="form-group col-md-6">
+                                <s:select class="custom-select"
+                                    name="linkedMarqueIds"
+                                    list="listMarques"
+                                    listKey="idMarque"
+                                    listValue="libelleMarque"
+                                    multiple="false"
+                                    size="3"
+                                    required="true"
+                                /></div><label for="ref">Reference</label>
                                 <s:textfield name="art.ref" id="ref" class="form-control form-control-sm rounded-0"/>
                                 <label for="prix">Prix</label>
                                 <s:textfield name="art.prix" id="prix" class="form-control form-control-sm rounded-0"/>
                                 <label for="description">Description</label>
                                 <s:textfield name="art.description" id="description" class="form-control form-control-sm rounded-0"/>
-                                <label for="sousCat">Categorie</label>
-                                <s:textfield name="listSousCat" id="listSousCat" class="form-control form-control-sm rounded-0"/>
-                            </div>
+                                <label for="categorie">Categories</label>
+                               <div class="form-group col-md-6">
+                                <s:select class="custom-select"
+                                    name="linkedSousCategoriesIds"
+                                    list="listAllSousCategories"
+                                    listKey="idSousCategorie"
+                                    listValue="nom"
+                                    multiple="true"
+                                    size="3"
+                                    required="true"
+                                /></div>
                             <div class="form-group col-md-6">
                                 <s:submit value="Ajouter Article" class="btn btn-success btn-lg float-right"/>
                             </div>
@@ -50,10 +66,11 @@
                             <tr>
                                 <th scope="col">Id</th>
                                 <th scope="col">Nom</th>
+                                <th scope="col">Marque</th>
                                 <th scope="col">Reference</th>
                                 <th scope="col">Prix</th>
                                 <th scope="col">Description</th>
-                                <th scope="col">Stocks</th>
+                                <th scope="col">Categories</th>
                                 <th scope="col">Modifier</th>
                                 <th scope="col">Supprimer</th>
                             </tr>   
@@ -62,6 +79,11 @@
                         <tr>
                             <th scope="row"><s:property value="#article.idArticle" /></td>
                             <td><s:property value="#article.nom" /></td>
+                            <td><s:property value="#article.marque.libelleMarque" /></td>
+                            <td><s:property value="#article.reference" /></td>
+                            <td><s:property value="#article.prix" /></td>
+                            <td><s:property value="#article.description" /></td>
+                            <td><s:property value="#article.souscategories" /></td>
                             <td>
                                 <s:url var="editURL" action="editCategorieLink">
                                     <s:param name="id" value="%{#article.idArticle}"></s:param>
