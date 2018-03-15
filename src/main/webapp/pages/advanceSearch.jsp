@@ -10,19 +10,12 @@
         <%@ include file="template/nav.jsp" %>
         
         <div class="container body-content form-horizontal well">
-            <h1>Recherche</h1>
-            <h4>Entrez le nom d'un article</h4>
-            <s:actionerror/>
-            <s:form action="processrecherche" method="post" style="align: center">
-                    <s:textfield name="nom" label="Nom"/>
-                    <s:submit value="Recherche" align="center"/>
-            </s:form>
-            <s:form action="advancesearch" method="post" style="align: center">
+            <h1>Recherche</h1>  
+            <s:form action="finalsearch" method="post" style="align: center">
                 <s:select class="custom-select"
-                          headerValue="Select"
-                                    name="searchCategorieId"
-                                    list="listAllCategories"
-                                    listKey="idCategorie"
+                                    name="searchSouscategorieId"
+                                    list="listAllSousCategories"
+                                    listKey="idSousCategorie"
                                     listValue="nom"
                                     required="true"
                                 />

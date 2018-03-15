@@ -89,11 +89,17 @@
             <result name="input">pages/categorieCRUD.jsp</result> 
         </action> 
         <!-- Categorie search -->
-        <action name="search" class="ca.uqac.archi.action.SearchAction">
+        <action name="search" class="ca.uqac.archi.action.SearchAction" method="execute">
             <result>pages/search.jsp</result>
         </action>
-        <action name="process-recherche" class="ca.uqac.archi.action.SearchAction" method="processSimpleSearch">  
+        <action name="processrecherche" class="ca.uqac.archi.action.SearchAction" method="processSimpleSearch">  
             <result name="success">pages/search.jsp</result>
+        </action>
+        <action name="advancesearch" class="ca.uqac.archi.action.SearchAction" method="AdvanceSearch">  
+            <result name="success">pages/advanceSearch.jsp</result>
+        </action>
+        <action name="finalsearch" class="ca.uqac.archi.action.SearchAction" method="FinalSearch">  
+            <result name="success">pages/advanceSearch.jsp</result>
         </action>
         
         <!-- CRUD Article -->

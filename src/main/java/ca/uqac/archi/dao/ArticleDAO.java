@@ -9,8 +9,11 @@ import ca.uqac.archi.model.Article;
 import ca.uqac.archi.model.Categorie;
 import ca.uqac.archi.model.Employe;
 import ca.uqac.archi.model.Marque;
+import ca.uqac.archi.model.Souscategorie;
 import ca.uqac.archi.util.HibernateUtil;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -86,7 +89,7 @@ public class ArticleDAO extends HibernateUtil{
   
  public List<Article> list()
  {
-     List<Article> AllArticles = null;
+    List<Article> AllArticles = null;
      Session session = HibernateUtil.getSessionFactory().openSession();
      session.beginTransaction();
      Query query = session.createQuery(" from Article");
@@ -116,11 +119,21 @@ public List<Article> list(){
  */
  
 public List<Article> recherche (String nomArticle){
-       Session session = HibernateUtil.getSessionFactory().openSession();
+        List<Article> AllArticles = null;
+         Session session = HibernateUtil.getSessionFactory().openSession();
+         session.beginTransaction();
+         Query query = session.createQuery(" from Article where nom like :nomArticle");
+         query.setParameter("nomArticle", nomArticle);
+         AllArticles = (List<Article>) query.list();
+         System.err.println(AllArticles);
+         System.err.println(query);
+         return AllArticles;   
+    
+    /*Session session = HibernateUtil.getSessionFactory().openSession();
        Transaction transaction = null;
        try {
             transaction = session.beginTransaction();
-            Query query = session.createQuery("FROM Article WHERE nom like :nomArticle");
+            Query query = session.createQuery(" FROM Article WHERE nom like :nomArticle");
             query.setParameter("nomArticle", nomArticle);
             List<Article> lstArticle = (List<Article>) query.list();
             transaction.commit();
@@ -137,6 +150,45 @@ public List<Article> recherche (String nomArticle){
                .add(Restrictions.eq("nom", nom))
                .list();*/
        
-       return null;
+       //return null;
    }
+public List<Article> FinalSearch (Integer IdSouscategorie){
+       /*Session session = HibernateUtil.getSessionFactory().openSession();
+       Transaction transaction = null;
+       try {
+            transaction = session.beginTransaction();
+            Query query = session.createQuery("FROM Article WHERE idSousCategorie like :IdSouscategorie");
+            query.setParameter("IdSouscategorie", IdSouscategorie);
+            List<Article> lstArticle = (List<Article>) query.list();
+            transaction.commit();
+            return lstArticle;
+       }catch(Exception e){
+           if(!(transaction == null)){
+               transaction.rollback();
+           }
+       }finally{
+           session.close();
+       }*/
+        
+       Souscategorie souscategorie = new SouscategorieDAO().find(IdSouscategorie);
+       List<Article> lstArticle = new ArrayList<>();
+       Set<Article> resArticles = souscategorie.getArticles();
+       for(Article article : resArticles){
+           lstArticle.add(article);
+       }
+       return lstArticle;
+       
+       //return null;
+   }
+    public List<Article> AdvanceSearch(Integer IdCategorie){
+        System.out.println("qwerty");
+        Categorie categorie = new CategorieDAO().find(IdCategorie);
+        List<Article> lstArticle = new ArrayList<>();
+        Set<Souscategorie> resSousategories = categorie.getSouscategories();
+        for(Souscategorie souscategorie : resSousategories){
+            lstArticle.addAll(souscategorie.getArticles());
+        }
+        System.out.println("123456789"+lstArticle.toString());
+        return lstArticle;
+    }
 }

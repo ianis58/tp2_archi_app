@@ -11,13 +11,13 @@
         <property name="libelleMarque" type="string">
             <column name="LibelleMarque" />
         </property>
-        <set name="articles" table="article" inverse="true" lazy="true" fetch="select">
+        <set name="articles" table="article" inverse="true" lazy="false" fetch="select">
             <key>
                 <column name="MarqueIdMarque" not-null="true" />
             </key>
             <one-to-many class="ca.uqac.archi.model.Article" />
         </set>
-        <set name="vehicules" table="vehicule" inverse="true" lazy="true" fetch="select">
+        <set name="vehicules" table="vehicule" inverse="true" lazy="false" fetch="select">
             <key>
                 <column name="MarqueIdMarque" not-null="true" />
             </key>
