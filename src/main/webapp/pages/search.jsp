@@ -41,6 +41,7 @@
                         <th scope="col">Reference</th>
                         <th scope="col">Prix</th>
                         <th scope="col">Description</th>
+                        <th scope="col">Vehicule</th>
                     </tr>
                 </thead>
                 
@@ -53,6 +54,11 @@
                                 <td><s:property value="#article.reference" /></td>
                                 <td><s:property value="#article.prix" /></td>
                                 <td><s:property value="#article.description" /></td>
+                                <td>
+                                        <s:iterator value="#article.getVehicules" var="veh">
+                                            <s:property value="#veh.libelleVehicule" />
+                                        </s:iterator>
+                                </td>
                             </tr>
                            
                         </s:iterator>
