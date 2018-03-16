@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ca.uqac.archi.action;
 
 import ca.uqac.archi.dao.EmployeDAO;
@@ -15,13 +10,10 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.struts2.ServletActionContext;
 
-/**
- *
- * @author Ianis
- */
 public class ManageUsersAction extends ActionSupport {
+
     public static EmployeDAO employeDAO = new EmployeDAO();
-    
+
     private int id = 0;
 
     private String action;
@@ -31,10 +23,9 @@ public class ManageUsersAction extends ActionSupport {
 
     @Override
     public String execute() {
-        if(id != 0){//si l'id est défini c'est qu'on est sur la page modifier user
+        if (id != 0) {//si l'id est défini c'est qu'on est sur la page modifier user
             employe = employeDAO.find(id);
-        }
-        else{//sinon on est sur la page du CRUD
+        } else {//sinon on est sur la page du CRUD
             listEmployees = employeDAO.getAllEmployees();
         }
 
@@ -68,9 +59,9 @@ public class ManageUsersAction extends ActionSupport {
         employe = new Employe(); //empty employe object, that will be read by manageusers.jsp (via this.getEmploye()) to prevent refilling form...
         return SUCCESS;
     }
-    
+
     public String delete() {
-        HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get( ServletActionContext.HTTP_REQUEST);
+        HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
         id = Integer.parseInt(request.getParameter("id"));
         try {
             employeDAO.delete(employeDAO.find(id));
