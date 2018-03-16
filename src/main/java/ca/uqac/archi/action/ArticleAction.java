@@ -24,7 +24,7 @@ public class ArticleAction extends ActionSupport {
     private List<Article> listArticles;
     private List<Souscategorie> listAllSousCategories;
     private List<Marque> listMarques = new ArrayList<>();
-    ;
+    
     private List<Vehicule> listVehicules;
 
     private ArticleDAO dao;
@@ -123,6 +123,8 @@ public class ArticleAction extends ActionSupport {
         listAllSousCategories = souscat_dao.getAllSouscategories();
         listMarques = marque_dao.list();
         listVehicules = veh_dao.list();
+        
+        art = new Article();
         return SUCCESS;
     }
 
@@ -154,6 +156,8 @@ public class ArticleAction extends ActionSupport {
             listAllSousCategories = souscat_dao.getAllSouscategories();
             listMarques = marque_dao.list();
             listVehicules = veh_dao.list();
+            art = new Article();
+            
             return SUCCESS;
         } else {
             listArticles = dao.list();

@@ -13,12 +13,14 @@ public class CategorieDAO extends HibernateUtil {
     @SuppressWarnings("unchecked")
     public Categorie find(String nom) {
         Session session = HibernateUtil.getSessionFactory().openSession();
-
+        session.beginTransaction();
         String sql = " from Categorie c where c.nom=:nom";
         Query query = session.createQuery(sql);
         query.setParameter("nom", nom);
         List<Categorie> list = (List<Categorie>) query.list();
-        session.close();
+        session.getTransaction().commit();
+        session.flush();
+        //session.close();
         if (list.size() > 0) {
             return list.get(0);
         }
@@ -29,29 +31,27 @@ public class CategorieDAO extends HibernateUtil {
     public Categorie find(Integer id) {
         Session session = HibernateUtil.getSessionFactory().openSession();
 
+        session.beginTransaction();
+        
         Categorie categorie = (Categorie) session.get(Categorie.class, id);
 
-        session.close();
+        session.getTransaction().commit();
+        session.flush();
+        //session.close();
 
         return categorie;
     }
 
     public void add(Categorie cat) {
         Session session = HibernateUtil.getSessionFactory().openSession();
-        String fname = cat.getNom();
-        System.out.println("nom=" + fname);
-        //int newid = this.getNewCategorieId();  
-        // cat.setId(newid);  
-        //int catid = cat.getId();  
-        //System.out.println("DaoCategorie id ;-" + catid);  
-        System.out.println("From Dao:-" + cat);
+
         session.beginTransaction();
-        //session.merge(cat);  
+
         session.save(cat);
+        
         session.getTransaction().commit();
         session.flush();
-        session.close();
-
+        //session.close();
     }
 
     public void deleteCategorie(int id) {
@@ -67,15 +67,14 @@ public class CategorieDAO extends HibernateUtil {
             session.getTransaction().rollback();
         }
         session.getTransaction().commit();
-
         session.flush();
-        session.close();
+        //session.close();
     }
 
     public void update(Categorie cat) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
-        //Categorie cat = (Categorie) session.load(Categorie.class, id);  
+        
         try {
             if (cat != null) {
                 session.saveOrUpdate(cat);
@@ -87,18 +86,20 @@ public class CategorieDAO extends HibernateUtil {
         }
         session.getTransaction().commit();
         session.flush();
-        session.close();
+        //session.close();
     }
 
     public int getNewCategorieId() {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-        Transaction trans = session.beginTransaction();
+        session.beginTransaction();
+        
         String query = "SELECT max(c.id) FROM Categorie c";
         List list = session.createQuery(query).list();
         int maxId = ((Integer) list.get(0));
 
-        trans.commit();
-        session.close();
+        session.getTransaction().commit();
+        session.flush();
+        //session.close();
         return (maxId + 1);
     }
 
@@ -109,16 +110,16 @@ public class CategorieDAO extends HibernateUtil {
         try {
 
             DaoAllCategorie = session.createCriteria(Categorie.class).list();
-            //DaoAllCategorie = (List<Categorie>)session.createQuery("from Categorie").list();  
+
             int count = DaoAllCategorie.size();
-            System.out.println("No of Record From Dao: " + count);
+
         } catch (HibernateException e) {
             e.printStackTrace();
             session.getTransaction().rollback();
         }
         session.getTransaction().commit();
         session.flush();
-        session.close();
+        //session.close();
         return DaoAllCategorie;
 
     }

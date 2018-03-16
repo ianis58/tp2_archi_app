@@ -19,13 +19,15 @@ public class EmployeDAO {
     @SuppressWarnings("unchecked")
     public Employe find(String mail, String password) {
         Session session = HibernateUtil.getSessionFactory().openSession();
-        //session.beginTransaction();
+        session.beginTransaction();
         String sql = " from Employe u where u.mail=:mail and u.password=:pass";
         Query query = session.createQuery(sql);
         query.setParameter("mail", mail);
         query.setParameter("pass", password);
         List<Employe> list = (List<Employe>) query.list();
-        session.close();
+        session.getTransaction().commit();
+        session.flush();
+        //session.close();
         if (list.size() > 0) {
             return list.get(0);
         }
@@ -38,14 +40,7 @@ public class EmployeDAO {
         Session session = HibernateUtil.getSessionFactory().openSession();
         List<Employe> listEmployees = (List<Employe>) session.createQuery("from Employe").list();
 
-        /*
-        Logger logger = Logger.getLogger("STDOUT");
-        
-        for(Employe e: listEmployees){
-            logger.log(Level.WARNING, e.toString());
-        }
-         */
-        session.close();
+        //session.close();
         return listEmployees;
     }
 
@@ -58,9 +53,13 @@ public class EmployeDAO {
     public Employe find(int id) {
         Session session = HibernateUtil.getSessionFactory().openSession();
 
+        session.beginTransaction();
+        
         Employe employe = (Employe) session.get(Employe.class, id);
 
-        session.close();
+        session.getTransaction().commit();
+        session.flush();
+        //session.close();
 
         return employe;
     }
@@ -75,12 +74,14 @@ public class EmployeDAO {
         Session session = HibernateUtil.getSessionFactory().openSession();
 
         session.beginTransaction(); //open transaction
+        
         session.save(employe); //save the employe to database
-        session.getTransaction().commit(); //commit the transaction
 
         int insertedEmployeId = ((BigInteger) session.createSQLQuery("SELECT LAST_INSERT_ID()").uniqueResult()).intValue();
 
-        session.close();
+        session.getTransaction().commit();
+        session.flush();
+        //session.close();
 
         return this.find(insertedEmployeId);
     }
@@ -94,11 +95,13 @@ public class EmployeDAO {
     public Employe update(Employe employe) {
         Session session = HibernateUtil.getSessionFactory().openSession();
 
+        session.beginTransaction();
+        
         session.update(employe);
 
-        session.flush(); //le flush permet de prendre en compte les modifs dans la bdd immédiatement
-
-        session.close();
+        session.getTransaction().commit();
+        session.flush();
+        //session.close();
 
         return this.find(employe.getIdPersonne());
     }
@@ -111,11 +114,13 @@ public class EmployeDAO {
     public void delete(Employe employe) {
         Session session = HibernateUtil.getSessionFactory().openSession();
 
+        session.beginTransaction();
+
         session.delete(employe);
 
-        session.flush(); //le flush permet de delete la row dans la bdd immédiatement
-
-        session.close();
+        session.getTransaction().commit();
+        session.flush();
+        //session.close();
     }
 
 }

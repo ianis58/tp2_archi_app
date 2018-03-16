@@ -60,6 +60,7 @@ public class CategorieAction extends ActionSupport {
                 e.printStackTrace();
             }
             listCategories = dao.list();
+            cat = new Categorie();
             return SUCCESS;
         } else {
             listCategories = dao.list();
@@ -79,6 +80,7 @@ public class CategorieAction extends ActionSupport {
             }
 
             listCategories = dao.list();
+            cat = new Categorie();
             return SUCCESS;
         } else {
             listCategories = dao.list();
@@ -89,7 +91,7 @@ public class CategorieAction extends ActionSupport {
 
     public String delete() {
         HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
-        System.out.println("id value=" + Long.parseLong(request.getParameter("id")));
+        
         this.setId(Integer.parseInt(request.getParameter("id")));
         try {
             dao.deleteCategorie(id);

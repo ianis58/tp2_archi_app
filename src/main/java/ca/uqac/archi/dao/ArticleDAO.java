@@ -11,17 +11,19 @@ import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
-public class ArticleDAO extends HibernateUtil {
+public class ArticleDAO extends HibernateUtil{
 
     @SuppressWarnings("unchecked")
     public Article find(String nom) {
         Session session = HibernateUtil.getSessionFactory().openSession();
-        //session.beginTransaction();
+        session.beginTransaction();
         String sql = " from Article c where c.nom=:nom";
         Query query = session.createQuery(sql);
         query.setParameter("nom", nom);
         List<Article> list = (List<Article>) query.list();
-        session.close();
+        session.getTransaction().commit();
+        session.flush();
+        //session.close();
         if (list.size() > 0) {
             return list.get(0);
         }
@@ -35,7 +37,7 @@ public class ArticleDAO extends HibernateUtil {
         session.save(art);
         session.getTransaction().commit();
         session.flush();
-        session.close();
+        //session.close();
 
     }
 
@@ -54,25 +56,32 @@ public class ArticleDAO extends HibernateUtil {
         }
         session.getTransaction().commit();
         session.flush();
-        session.close();
+        //session.close();
     }
 
     public List<Article> list() {
         List<Article> AllArticles = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
+        
         session.beginTransaction();
+        
         Query query = session.createQuery(" from Article");
-        AllArticles = (List<Article>) query.list();
-        System.err.println(AllArticles);
-        System.err.println(query);
+        AllArticles = (ArrayList<Article>) query.list();
+        
+        session.getTransaction().commit();
+        session.flush();
+        //session.close();
+
         return AllArticles;
     }
 
     public void update(Article art) {
         Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
         session.update(art);
-        session.flush(); //le flush permet de prendre en compte les modifs dans la bdd immédiatement
-        session.close();
+        session.getTransaction().commit();
+        session.flush();
+        ////session.close();
     }
 
     public List<Article> recherche(String nomArticle) {
@@ -81,7 +90,10 @@ public class ArticleDAO extends HibernateUtil {
         session.beginTransaction();
         Query query = session.createQuery(" from Article where nom like :nomArticle");
         query.setParameter("nomArticle", "%" + nomArticle + "%");
-        AllArticles = (List<Article>) query.list();
+        AllArticles = (ArrayList<Article>) query.list();
+        session.getTransaction().commit();
+        session.flush();
+        ////session.close();
         System.err.println(AllArticles);
         System.err.println(query);
         return AllArticles;
@@ -115,8 +127,11 @@ public class ArticleDAO extends HibernateUtil {
 
     public Article findById(int id) {
         Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
         Article art = (Article) session.get(Article.class, id);
-        session.close();
+        session.getTransaction().commit();
+        session.flush();
+        //session.close();
         return art;
     }
 }

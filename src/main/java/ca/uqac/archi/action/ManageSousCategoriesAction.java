@@ -75,6 +75,8 @@ public class ManageSousCategoriesAction extends ActionSupport implements Prepara
         listSouscategories = this.getListSouscategories();
         id = 0;
         souscategorie = new Souscategorie();
+        
+        souscategorie = new Souscategorie();
         return SUCCESS;
     }
 

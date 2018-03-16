@@ -11,16 +11,14 @@ public class SouscategorieDAO {
     @SuppressWarnings("unchecked")
     public List<Souscategorie> getAllSouscategories() {
         Session session = HibernateUtil.getSessionFactory().openSession();
+        
+        session.beginTransaction();
+        
         List<Souscategorie> listSouscategories = (List<Souscategorie>) session.createQuery("from Souscategorie").list();
 
-        /*
-        Logger logger = Logger.getLogger("STDOUT");
-        
-        for(Souscategorie e: listSouscategories){
-            logger.log(Level.WARNING, e.toString());
-        }
-         */
-        session.close();
+        session.getTransaction().commit();
+        session.flush();
+        //session.close();
         return listSouscategories;
     }
 
@@ -33,9 +31,13 @@ public class SouscategorieDAO {
     public Souscategorie find(int id) {
         Session session = HibernateUtil.getSessionFactory().openSession();
 
+        session.beginTransaction();
+        
         Souscategorie souscategories = (Souscategorie) session.get(Souscategorie.class, id);
 
-        session.close();
+        session.getTransaction().commit();
+        session.flush();
+        //session.close();
 
         return souscategories;
     }
@@ -51,11 +53,12 @@ public class SouscategorieDAO {
 
         session.beginTransaction(); //open transaction
         session.save(souscategories); //save the souscategories to database
-        session.getTransaction().commit(); //commit the transaction
 
         int insertedSouscategorieId = ((BigInteger) session.createSQLQuery("SELECT LAST_INSERT_ID()").uniqueResult()).intValue();
 
-        session.close();
+        session.getTransaction().commit();
+        session.flush();
+        //session.close();
 
         return this.find(insertedSouscategorieId);
     }
@@ -69,11 +72,13 @@ public class SouscategorieDAO {
     public Souscategorie update(Souscategorie souscategories) {
         Session session = HibernateUtil.getSessionFactory().openSession();
 
+        session.beginTransaction();
+        
         session.update(souscategories);
 
-        session.flush(); //le flush permet de prendre en compte les modifs dans la bdd immédiatement
-
-        session.close();
+        session.getTransaction().commit();
+        session.flush();
+        //session.close();
 
         return this.find(souscategories.getIdSousCategorie());
     }
@@ -86,11 +91,13 @@ public class SouscategorieDAO {
     public void delete(Souscategorie souscategories) {
         Session session = HibernateUtil.getSessionFactory().openSession();
 
+        session.beginTransaction();
+        
         session.delete(souscategories);
 
-        session.flush(); //le flush permet de delete la row dans la bdd immédiatement
-
-        session.close();
+        session.getTransaction().commit();
+        session.flush();
+        //session.close();
     }
 
 }

@@ -14,16 +14,27 @@ public class VehiculeDAO extends HibernateUtil {
         session.beginTransaction();
         Query query = session.createQuery(" from Vehicule");
         AllVeh = (List<Vehicule>) query.list();
+        
+        session.getTransaction().commit();
+        session.flush();
+        //session.close();
         return AllVeh;
     }
 
     public Vehicule findById(int id) {
         Session session = HibernateUtil.getSessionFactory().openSession();
+        
+        session.beginTransaction();
+        
         String sql = " from Vehicule c where c.idVehicule=:id";
         Query query = session.createQuery(sql);
         query.setParameter("id", id);
         List<Vehicule> list = (List<Vehicule>) query.list();
-        session.close();
+        
+        session.getTransaction().commit();
+        session.flush();
+        //session.close();
+        
         if (list.size() > 0) {
             return list.get(0);
         }
