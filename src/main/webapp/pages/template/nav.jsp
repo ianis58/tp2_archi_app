@@ -20,6 +20,9 @@
                 <li class='nav-item <s:if test="action == \"search\"">active</s:if>'>
                     <a class="nav-link" href="search">Recherches</a>
                 </li>
+                <li class='nav-item <s:if test="action == \"vehiculeCRUD\"">active</s:if>'>
+                    <a class="nav-link" href="vehiculeCRUD">Véhicules</a>
+                </li>
             </ul>
                 <span class="navbar-text">
                     Bonjour,  <s:property value="%{#attr['prenom']}"/> <s:property value="%{#attr['nom']}"/>!   
@@ -56,6 +59,9 @@
                 </li>
                 <li class='nav-item <s:if test="action == \"search\"">active</s:if>'>
                     <a class="nav-link" href="search">Recherches</a>
+                </li>
+                <li class='nav-item <s:if test="action == \"vehiculeCRUD\"">active</s:if>'>
+                    <a class="nav-link" href="vehiculeCRUD">Véhicules</a>
                 </li>
             </ul>
                 <span class="navbar-text">

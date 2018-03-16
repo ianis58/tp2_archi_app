@@ -133,6 +133,29 @@
         </action> 
         
         
+        <!-- Vehicule CRUD -->
+        <action name="vehiculeCRUD" class="ca.uqac.archi.action.VehiculeAction">
+            <result>pages/vehiculeCRUD.jsp</result>
+        </action>
+        
+        <!-- Action list for vehicule -->
+        <action name="addVehicule" class="ca.uqac.archi.action.VehiculeAction" method="add">  
+            <result name="success">pages/vehiculeCRUD.jsp</result>
+            <result name="input">pages/vehiculeCRUD.jsp</result>
+        </action>
+
+        <action name="deleteVehicule" method="delete" class="ca.uqac.archi.action.VehiculeAction">
+            <result name="success">pages/vehiculeCRUD.jsp</result>
+        </action>
+
+        <action name="editVehiculeLink" class="ca.uqac.archi.action.VehiculeAction">  
+            <result name="success">pages/updateVehicule.jsp</result>
+        </action>
+
+        <action name="updateVehicule" class="ca.uqac.archi.action.VehiculeAction" method="update">  
+            <result name="success">pages/vehiculeCRUD.jsp</result>
+            <result name="input">pages/vehiculeCRUD.jsp</result> 
+        </action> 
     </package>
 
 </struts>

@@ -49,9 +49,7 @@ public class MarqueDAO extends HibernateUtil {
         
         Query query = session.createQuery(" from Marque");
         AllMarques = (List<Marque>) query.list();
-        System.err.println(AllMarques);
-        System.err.println(query);
-        
+
         session.getTransaction().commit();
         session.flush();
         //session.close();
