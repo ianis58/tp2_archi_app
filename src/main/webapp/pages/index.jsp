@@ -75,14 +75,14 @@
                             </h3>
 
                             <div class="row top-buffer btn-group btn-group-justified" role="group">
-                                <a href="#" class="btn btn-primary" role="button">Article</a>
+                                <a href="articleCRUD" class="btn btn-primary" role="button">Article</a>
                                 <a href="categorieCRUD" class="btn btn-primary" role="button">Catégorie</a>
                                 <a href="managesouscategories" class="btn btn-primary" role="button">Sous Catégorie</a>
                             </div>
                             <div class="row top-buffer btn-group btn-group-justified" role="group">
                                 <a href="#" class="btn btn-primary" role="button" onclick="return confirm('Ce lien n\'est pas disponible !')">Stock</a>
                                 <a href="#" class="btn btn-primary" role="button">Recherche Article</a>
-                                <a href="#" class="btn btn-primary" role="button">Recherche Stock</a>
+                                <a href="marqueCRUD" class="btn btn-primary" role="button">Marque</a>
                             </div> 
 
                         </div>
