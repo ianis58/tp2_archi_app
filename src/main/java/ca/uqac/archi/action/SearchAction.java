@@ -56,7 +56,7 @@ public class SearchAction extends ActionSupport implements Preparable {
                 listAllSousCategories.add(souscategorie);
             }
         }
-        System.out.println("hfusfhufihhgfdfhgudfghud");
+
         return SUCCESS;
     }
 

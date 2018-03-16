@@ -119,7 +119,11 @@ public class ArticleDAO extends HibernateUtil{
         List<Article> lstArticle = new ArrayList<>();
         Set<Souscategorie> resSousategories = categorie.getSouscategories();
         for (Souscategorie souscategorie : resSousategories) {
-            lstArticle.addAll(souscategorie.getArticles());
+            for(Article article : (Set<Article>)souscategorie.getArticles()){
+                if(!lstArticle.contains(article)){
+                    lstArticle.add(article);
+                }
+            }
         }
         System.out.println("123456789" + lstArticle.toString());
         return lstArticle;
