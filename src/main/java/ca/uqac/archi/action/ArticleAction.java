@@ -5,16 +5,22 @@
  */
 package ca.uqac.archi.action;
 
+import ca.uqac.archi.dao.VehiculeDAO;
+import static ca.uqac.archi.action.ManageSousCategoriesAction.categorieDAO;
 import ca.uqac.archi.dao.ArticleDAO;
 import ca.uqac.archi.dao.SouscategorieDAO;
 import ca.uqac.archi.dao.MarqueDAO;
 import ca.uqac.archi.model.Article;
 import ca.uqac.archi.model.Souscategorie;
 import ca.uqac.archi.model.Marque;
+import ca.uqac.archi.model.Vehicule;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import freemarker.core.ParseException;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.struts2.ServletActionContext;
 
@@ -29,17 +35,32 @@ public class ArticleAction extends ActionSupport {
     private List<Article> listArticles;
     private List<Souscategorie> listAllSousCategories;
     private List<Marque> listMarques;
+    private List<Vehicule> listVehicules;
 
     private ArticleDAO dao;
     private SouscategorieDAO souscat_dao;
     private MarqueDAO marque_dao;
+    private VehiculeDAO veh_dao;
+    
     private String action;
     private int nbr_stock;
-
+    
+    private int linkedMarqueIds;
+    
+    private ArrayList<Integer> linkedSousCategoriesIds;
+    
+    private ArrayList<Integer> linkedVehIds;
+    
+    private Set<Souscategorie> sousCategorieSet;
+    
+    private Set<Vehicule> VehiculeSet;
+    
+    
     public ArticleAction() {
         dao = new ArticleDAO();
         souscat_dao = new SouscategorieDAO();
         marque_dao = new MarqueDAO();
+        veh_dao = new VehiculeDAO();
     }
 
     @Override
@@ -48,6 +69,7 @@ public class ArticleAction extends ActionSupport {
         listArticles = dao.list();
         listAllSousCategories = souscat_dao.getAllSouscategories();
         listMarques = marque_dao.list();
+        listVehicules=veh_dao.list();
         return SUCCESS;
     }
 
@@ -63,28 +85,62 @@ public class ArticleAction extends ActionSupport {
             this.addActionError("Ce nom existe déjà !");
             val = INPUT;
         }
-        if (artVerif.getReference() != null) {
-            this.addActionError("Cette reference existe déjà !");
-            val = INPUT;
-        }
-        artVerif = null;
         return val;
     }
 
     public String add() throws ParseException {
+        
         String val = customValidate();
+        art.setMarque(marque_dao.findById(linkedMarqueIds));
+        System.err.println(art.getNom()+" "+art.getMarque()+" "+art.getDescription());
         if (val == SUCCESS) {
             try {
+                sousCategorieSet = new HashSet<>();
+                for(Integer linkedSousCategorieId : linkedSousCategoriesIds)
+                {
+                    sousCategorieSet.add(souscat_dao.find(linkedSousCategorieId));
+                }
+                art.setSouscategories(sousCategorieSet);
+                
+                
+                VehiculeSet = new HashSet<>();
+                for(Integer linkedVehId : linkedVehIds)
+                {
+                    VehiculeSet.add(veh_dao.findById(linkedVehId));
+                }
+                art.setVehicules(VehiculeSet);
+                
                 dao.add(art);
+               
             } catch (Exception e) {
                 e.printStackTrace();
             }
             listArticles = dao.list();
+            listAllSousCategories = souscat_dao.getAllSouscategories();
+            listMarques = marque_dao.list();
+                    listVehicules=veh_dao.list();
             return SUCCESS;
         } else {
             listArticles = dao.list();
+            listAllSousCategories = souscat_dao.getAllSouscategories();
+            listMarques = marque_dao.list();
+                    listVehicules=veh_dao.list();
             return INPUT;
         }
+    }
+    
+    public String delete() {
+        HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get( ServletActionContext.HTTP_REQUEST);
+        try {
+             dao.deleteArticle(Integer.parseInt(request.getParameter("id")));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        listArticles = dao.list();
+        listAllSousCategories = souscat_dao.getAllSouscategories();
+        listMarques = marque_dao.list();
+                listVehicules=veh_dao.list();
+        return SUCCESS;
     }
 
     public Article getArt() {
@@ -135,4 +191,37 @@ public class ArticleAction extends ActionSupport {
         this.listMarques = listMarques;
     }
 
+    public int getLinkedMarqueIds() {
+        return linkedMarqueIds;
+    }
+
+    public void setLinkedMarqueIds(int linkedMarqueIds) {
+        this.linkedMarqueIds = linkedMarqueIds;
+    }
+
+    public ArrayList<Integer> getLinkedSousCategoriesIds() {
+        return linkedSousCategoriesIds;
+    }
+
+    public void setLinkedSousCategoriesIds(ArrayList<Integer> linkedSousCategoriesIds) {
+        this.linkedSousCategoriesIds = linkedSousCategoriesIds;
+    }
+
+    public List<Vehicule> getListVehicules() {
+        return listVehicules;
+    }
+
+    public void setListVehicules(List<Vehicule> listVehicules) {
+        this.listVehicules = listVehicules;
+    }
+
+    public ArrayList<Integer> getLinkedVehIds() {
+        return linkedVehIds;
+    }
+
+    public void setLinkedVehIds(ArrayList<Integer> linkedVehIds) {
+        this.linkedVehIds = linkedVehIds;
+    }
+
+    
 }
