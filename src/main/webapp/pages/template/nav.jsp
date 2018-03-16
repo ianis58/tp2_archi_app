@@ -1,6 +1,6 @@
 <s:if test="%{#attr['admin'] == 0}">
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary navbar-atelier-meca">
-        <a class="navbar-brand" href="index">Atelier MÃ©canique</a>
+        <a class="navbar-brand" href="index">Atelier Mécanique</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -12,10 +12,10 @@
                     <a class="nav-link" href="articleCRUD">Articles</a>
                 </li>
                 <li class='nav-item <s:if test="action == \"categorieCRUD\"">active</s:if>'>
-                    <a class="nav-link" href="categorieCRUD">CatÃ©gories</a>
+                    <a class="nav-link" href="categorieCRUD">Catégories</a>
                 </li>
                 <li class='nav-item <s:if test="action == \"managesouscategories\"">active</s:if>'>
-                    <a class="nav-link" href="managesouscategories">Sous catÃ©gories</a>
+                    <a class="nav-link" href="managesouscategories">Sous catégories</a>
                 </li>
                 <li class='nav-item <s:if test="action == \"search\"">active</s:if>'>
                     <a class="nav-link" href="search">Recherches</a>
@@ -27,14 +27,14 @@
                 <span class="left-buffer">
                     <s:url var="logout" action="logout">
                     </s:url>
-                    <s:a href="%{logout}" onclick="return confirm('Etes-vous sÃ»r de vouloir vous dÃ©connecter ?')"><i class="material-icons icon-white">exit_to_app</i></s:a>
+                    <s:a href="%{logout}" onclick="return confirm('Etes-vous sûr de vouloir vous déconnecter ?')"><i class="material-icons icon-white">exit_to_app</i></s:a>
                 </span>
         </div>
     </nav>
 </s:if>
 <s:else>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary navbar-atelier-meca">
-        <a class="navbar-brand" href="index">Atelier MÃ©canique</a>
+        <a class="navbar-brand" href="index">Atelier Mécanique</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -46,10 +46,10 @@
                     <a class="nav-link" href="articleCRUD">Articles</a>
                 </li>
                 <li class='nav-item <s:if test="action == \"categorieCRUD\"">active</s:if>'>
-                    <a class="nav-link" href="categorieCRUD">CatÃ©gories</a>
+                    <a class="nav-link" href="categorieCRUD">Catégories</a>
                 </li>
                 <li class='nav-item <s:if test="action == \"managesouscategories\"">active</s:if>'>
-                    <a class="nav-link" href="managesouscategories">Sous catÃ©gories</a>
+                    <a class="nav-link" href="managesouscategories">Sous catégories</a>
                 </li>
                 <li class='nav-item <s:if test="action == \"manageusers\"">active</s:if>'>
                     <a class="nav-link" href="manageusers">Utilisateurs</a>
@@ -64,7 +64,7 @@
                 <span class="left-buffer">
                     <s:url var="logout" action="logout">
                     </s:url>
-                    <s:a href="%{logout}" onclick="return confirm('Etes-vous sÃ»r de vouloir vous dÃ©connecter ?')"><i class="material-icons icon-white">exit_to_app</i></s:a>
+                    <s:a href="%{logout}" onclick="return confirm('Etes-vous sûr de vouloir vous déconnecter ?')"><i class="material-icons icon-white">exit_to_app</i></s:a>
                 </span>
         </div>
     </nav>

@@ -16,16 +16,17 @@ import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.struts2.ServletActionContext;
 
-public class ManageSousCategoriesAction extends ActionSupport implements Preparable{
+public class ManageSousCategoriesAction extends ActionSupport implements Preparable {
+
     public static SouscategorieDAO souscategorieDAO = new SouscategorieDAO();
     public static CategorieDAO categorieDAO = new CategorieDAO();
-    
+
     private int id = 0;
 
     private String action;
     private List<Souscategorie> listSouscategories;
     private List<Categorie> listAllCategories;
-    
+
     private ArrayList<Integer> linkedCategoriesIds;
     private Set<Categorie> categoriesSet;
 
@@ -36,19 +37,18 @@ public class ManageSousCategoriesAction extends ActionSupport implements Prepara
 
         linkedCategoriesIds = new ArrayList<>();
 
-        if(id != 0){
+        if (id != 0) {
             categoriesSet = souscategorieDAO.find(id).getCategories();
 
-            for(Categorie categorie : categoriesSet){
+            for (Categorie categorie : categoriesSet) {
                 linkedCategoriesIds.add(categorie.getIdCategorie());
             }
         }
 
-        if(id != 0){//si l'id est défini c'est qu'on est sur la page modifier user
+        if (id != 0) {//si l'id est défini c'est qu'on est sur la page modifier user
             souscategorie = souscategorieDAO.find(id);
             //categoriesSet = souscategorie.getCategories();
-        }
-        else{//sinon on est sur la page du CRUD
+        } else {//sinon on est sur la page du CRUD
             listSouscategories = souscategorieDAO.getAllSouscategories();
         }
 
@@ -60,12 +60,12 @@ public class ManageSousCategoriesAction extends ActionSupport implements Prepara
     public String add() throws ParseException {
         categoriesSet = new HashSet<>();
 
-        for(Integer linkedCategorieId : linkedCategoriesIds){
+        for (Integer linkedCategorieId : linkedCategoriesIds) {
             categoriesSet.add(categorieDAO.find(linkedCategorieId));
         }
-        
+
         souscategorie.setCategories(categoriesSet);
-        
+
         try {
             souscategorieDAO.create(souscategorie);
         } catch (Exception e) {
@@ -81,12 +81,12 @@ public class ManageSousCategoriesAction extends ActionSupport implements Prepara
     public String update() throws ParseException {
         categoriesSet = new HashSet<>();
 
-        for(Integer linkedCategorieId : linkedCategoriesIds){
+        for (Integer linkedCategorieId : linkedCategoriesIds) {
             categoriesSet.add(categorieDAO.find(linkedCategorieId));
         }
-        
+
         souscategorie.setCategories(categoriesSet);
-        
+
         try {
             souscategorieDAO.update(souscategorie);
         } catch (Exception e) {
@@ -98,9 +98,9 @@ public class ManageSousCategoriesAction extends ActionSupport implements Prepara
         souscategorie = new Souscategorie();
         return SUCCESS;
     }
-    
+
     public String delete() {
-        HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get( ServletActionContext.HTTP_REQUEST);
+        HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
         id = Integer.parseInt(request.getParameter("id"));
         try {
             souscategorieDAO.delete(souscategorieDAO.find(id));
@@ -167,5 +167,5 @@ public class ManageSousCategoriesAction extends ActionSupport implements Prepara
     public void prepare() throws Exception {
         listAllCategories = new CategorieDAO().list();
     }
-    
+
 }

@@ -1,18 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ca.uqac.archi.action;
 
 import ca.uqac.archi.dao.VehiculeDAO;
-import static ca.uqac.archi.action.ManageSousCategoriesAction.categorieDAO;
-import static ca.uqac.archi.action.ManageSousCategoriesAction.souscategorieDAO;
 import ca.uqac.archi.dao.ArticleDAO;
 import ca.uqac.archi.dao.SouscategorieDAO;
 import ca.uqac.archi.dao.MarqueDAO;
 import ca.uqac.archi.model.Article;
-import ca.uqac.archi.model.Categorie;
 import ca.uqac.archi.model.Souscategorie;
 import ca.uqac.archi.model.Marque;
 import ca.uqac.archi.model.Vehicule;
@@ -26,38 +18,35 @@ import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.struts2.ServletActionContext;
 
-/**
- *
- * @author nruj
- */
 public class ArticleAction extends ActionSupport {
 
-    private static final long serialVersionUID = 1L;
     private Article art = new Article();
     private List<Article> listArticles;
     private List<Souscategorie> listAllSousCategories;
-    private List<Marque> listMarques;
+    private List<Marque> listMarques = new ArrayList<>();
+    ;
     private List<Vehicule> listVehicules;
 
     private ArticleDAO dao;
     private SouscategorieDAO souscat_dao;
     private MarqueDAO marque_dao;
     private VehiculeDAO veh_dao;
-    
+
     private String action;
     private int nbr_stock;
-    
+
     private int linkedMarqueIds;
-    
+
     private ArrayList<Integer> linkedSousCategoriesIds;
-    
+
     private ArrayList<Integer> linkedVehIds;
-    
+
     private Set<Souscategorie> sousCategorieSet;
-    
+
     private Set<Vehicule> VehiculeSet;
-    
-    private int id=0;
+
+    private int id = 0;
+
     public ArticleAction() {
         dao = new ArticleDAO();
         souscat_dao = new SouscategorieDAO();
@@ -71,28 +60,26 @@ public class ArticleAction extends ActionSupport {
         listArticles = dao.list();
         listAllSousCategories = souscat_dao.getAllSouscategories();
         listMarques = marque_dao.list();
-        listVehicules=veh_dao.list();
+        listVehicules = veh_dao.list();
         linkedSousCategoriesIds = new ArrayList<>();
         linkedVehIds = new ArrayList<>();
 
-        if(id != 0){
-            art=dao.findById(id);
+        if (id != 0) {
+            art = dao.findById(id);
             VehiculeSet = art.getVehicules();
             sousCategorieSet = art.getSouscategories();
-            for(Vehicule vehicule : VehiculeSet){
+            for (Vehicule vehicule : VehiculeSet) {
                 linkedVehIds.add(vehicule.getIdVehicule());
             }
-            
-             for(Souscategorie sousCategorie : sousCategorieSet){
+
+            for (Souscategorie sousCategorie : sousCategorieSet) {
                 linkedSousCategoriesIds.add(sousCategorie.getIdSousCategorie());
             }
-             
-             System.err.println(art.getNom());
-            
+
+            System.err.println(art.getNom());
+
         }
-        
-        
-        
+
         return SUCCESS;
     }
 
@@ -110,89 +97,84 @@ public class ArticleAction extends ActionSupport {
         }
         return val;
     }
-    
- public String update() throws ParseException {
-     try {
-          art.setMarque(marque_dao.findById(linkedMarqueIds));
-                sousCategorieSet = new HashSet<>();
-                for(Integer linkedSousCategorieId : linkedSousCategoriesIds)
-                {
-                    sousCategorieSet.add(souscat_dao.find(linkedSousCategorieId));
-                }
-                art.setSouscategories(sousCategorieSet);
-                
-                VehiculeSet = new HashSet<>();
-                for(Integer linkedVehId : linkedVehIds)
-                {
-                    VehiculeSet.add(veh_dao.findById(linkedVehId));
-                }
-                art.setVehicules(VehiculeSet);
+
+    public String update() throws ParseException {
+        try {
+            art.setMarque(marque_dao.findById(linkedMarqueIds));
+            sousCategorieSet = new HashSet<>();
+            for (Integer linkedSousCategorieId : linkedSousCategoriesIds) {
+                sousCategorieSet.add(souscat_dao.find(linkedSousCategorieId));
+            }
+            art.setSouscategories(sousCategorieSet);
+
+            VehiculeSet = new HashSet<>();
+            for (Integer linkedVehId : linkedVehIds) {
+                VehiculeSet.add(veh_dao.findById(linkedVehId));
+            }
+            art.setVehicules(VehiculeSet);
             dao.update(art);
         } catch (Exception e) {
             e.printStackTrace();
         }
-            linkedMarqueIds=0;
-            linkedSousCategoriesIds=new ArrayList<>();
-            linkedVehIds=new ArrayList<>();
-            listArticles = dao.list();
-            listAllSousCategories = souscat_dao.getAllSouscategories();
-            listMarques = marque_dao.list();
-            listVehicules=veh_dao.list();
+        linkedMarqueIds = 0;
+        linkedSousCategoriesIds = new ArrayList<>();
+        linkedVehIds = new ArrayList<>();
+        listArticles = dao.list();
+        listAllSousCategories = souscat_dao.getAllSouscategories();
+        listMarques = marque_dao.list();
+        listVehicules = veh_dao.list();
         return SUCCESS;
     }
- 
+
     public String add() throws ParseException {
-        
+
         String val = customValidate();
         art.setMarque(marque_dao.findById(linkedMarqueIds));
-        System.err.println(art.getNom()+" "+art.getMarque()+" "+art.getDescription());
+        System.err.println(art.getNom() + " " + art.getMarque() + " " + art.getDescription());
         if (val == SUCCESS) {
             try {
                 sousCategorieSet = new HashSet<>();
-                for(Integer linkedSousCategorieId : linkedSousCategoriesIds)
-                {
+                for (Integer linkedSousCategorieId : linkedSousCategoriesIds) {
                     sousCategorieSet.add(souscat_dao.find(linkedSousCategorieId));
                 }
                 art.setSouscategories(sousCategorieSet);
-                
-                
+
                 VehiculeSet = new HashSet<>();
-                for(Integer linkedVehId : linkedVehIds)
-                {
+                for (Integer linkedVehId : linkedVehIds) {
                     VehiculeSet.add(veh_dao.findById(linkedVehId));
                 }
                 art.setVehicules(VehiculeSet);
-                
+
                 dao.add(art);
-               
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
             listArticles = dao.list();
             listAllSousCategories = souscat_dao.getAllSouscategories();
             listMarques = marque_dao.list();
-                    listVehicules=veh_dao.list();
+            listVehicules = veh_dao.list();
             return SUCCESS;
         } else {
             listArticles = dao.list();
             listAllSousCategories = souscat_dao.getAllSouscategories();
             listMarques = marque_dao.list();
-                    listVehicules=veh_dao.list();
+            listVehicules = veh_dao.list();
             return INPUT;
         }
     }
-    
+
     public String delete() {
-        HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get( ServletActionContext.HTTP_REQUEST);
+        HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
         try {
-             dao.deleteArticle(Integer.parseInt(request.getParameter("id")));
+            dao.deleteArticle(Integer.parseInt(request.getParameter("id")));
         } catch (Exception e) {
             e.printStackTrace();
         }
         listArticles = dao.list();
         listAllSousCategories = souscat_dao.getAllSouscategories();
         listMarques = marque_dao.list();
-                listVehicules=veh_dao.list();
+        listVehicules = veh_dao.list();
         return SUCCESS;
     }
 
@@ -284,5 +266,4 @@ public class ArticleAction extends ActionSupport {
         this.id = id;
     }
 
-    
 }

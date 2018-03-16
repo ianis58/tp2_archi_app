@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ca.uqac.archi.action;
 
 import ca.uqac.archi.dao.CategorieDAO;
@@ -14,12 +9,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.struts2.ServletActionContext;
 
-/**
- *
- * @author almes
- */
-public class CategorieAction extends ActionSupport{
-    private static final long serialVersionUID = 1L;
+public class CategorieAction extends ActionSupport {
+
     private Categorie cat = new Categorie();
     private List<Categorie> listCategories;
 
@@ -28,7 +19,7 @@ public class CategorieAction extends ActionSupport{
     private String action;
 
     public CategorieAction() {
-         dao = new CategorieDAO();
+        dao = new CategorieDAO();
     }
 
     @Override
@@ -42,16 +33,16 @@ public class CategorieAction extends ActionSupport{
         //System.out.println("execute called");
         return SUCCESS;
     }
-    
+
     // fonction de validation de champs
-    public String customValidate(){
+    public String customValidate() {
         String val = SUCCESS;
         Categorie catVerif = dao.find(cat.getNom());
-        if(cat.getNom().length() < 1 || cat.getNom().equals(" ")){
+        if (cat.getNom().length() < 1 || cat.getNom().equals(" ")) {
             this.addActionError("Entrez un nom svp !");
             val = INPUT;
         }
-        if(catVerif.getNom() != null){
+        if (catVerif.getNom() != null) {
             this.addActionError("Ce nom existe déjà !");
             val = INPUT;
         }
@@ -62,7 +53,7 @@ public class CategorieAction extends ActionSupport{
     public String add() throws ParseException {
         //System.out.println(cat);
         String val = customValidate();
-        if(val == SUCCESS){
+        if (val == SUCCESS) {
             try {
                 dao.add(cat);
             } catch (Exception e) {
@@ -70,38 +61,38 @@ public class CategorieAction extends ActionSupport{
             }
             listCategories = dao.list();
             return SUCCESS;
-        }else{
+        } else {
             listCategories = dao.list();
             return INPUT;
         }
     }
 
-    public String update() throws ParseException{
+    public String update() throws ParseException {
         //System.out.println(getCat());
         String val = customValidate();
-        if(val == SUCCESS){
+        if (val == SUCCESS) {
             try {
-             dao.update(cat);
-             cat = null;
+                dao.update(cat);
+                cat = null;
             } catch (Exception e) {
                 e.printStackTrace();
             }
 
             listCategories = dao.list();
             return SUCCESS;
-        }else{
+        } else {
             listCategories = dao.list();
             return INPUT;
         }
-        
+
     }
 
     public String delete() {
-        HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get( ServletActionContext.HTTP_REQUEST);
-        System.out.println("id value="+Long.parseLong( request.getParameter("id")));
+        HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
+        System.out.println("id value=" + Long.parseLong(request.getParameter("id")));
         this.setId(Integer.parseInt(request.getParameter("id")));
         try {
-             dao.deleteCategorie(id);
+            dao.deleteCategorie(id);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -117,7 +108,7 @@ public class CategorieAction extends ActionSupport{
         this.cat = cat;
     }
 
-   public List<Categorie> getListCategories() {
+    public List<Categorie> getListCategories() {
         return listCategories;
     }
 

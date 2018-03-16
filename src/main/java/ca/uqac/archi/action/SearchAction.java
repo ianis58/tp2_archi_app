@@ -1,16 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ca.uqac.archi.action;
 
 import static ca.uqac.archi.action.ManageSousCategoriesAction.categorieDAO;
-import static ca.uqac.archi.action.ManageSousCategoriesAction.souscategorieDAO;
 import ca.uqac.archi.dao.ArticleDAO;
 import ca.uqac.archi.model.Article;
 import ca.uqac.archi.model.Categorie;
-import ca.uqac.archi.model.Marque;
 import ca.uqac.archi.model.Souscategorie;
 import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionSupport;
@@ -19,13 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-/**
- *
- * @author arthu
- */
 public class SearchAction extends ActionSupport implements Preparable {
 
-    private static final long serialVersionUID = 1L;
     private ArticleDAO articleDAO = new ArticleDAO();
 
     private Article art = new Article();
@@ -33,7 +21,7 @@ public class SearchAction extends ActionSupport implements Preparable {
 
     private String action;
 
-    private List<Categorie> listAllCategories;
+    private List<Categorie> listAllCategories = new ArrayList<>();
     private Integer searchCategorieId;
     private Categorie searchCategorie;
 
