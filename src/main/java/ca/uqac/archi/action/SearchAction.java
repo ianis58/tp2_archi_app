@@ -19,80 +19,75 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-
 /**
  *
  * @author arthu
  */
-public class SearchAction extends ActionSupport implements Preparable{
+public class SearchAction extends ActionSupport implements Preparable {
+
     private static final long serialVersionUID = 1L;
     private ArticleDAO articleDAO = new ArticleDAO();
-    
+
     private Article art = new Article();
     private List<Article> listRecherche;
-    
-    private String nom;
+
     private String action;
-    
+
     private List<Categorie> listAllCategories;
     private Integer searchCategorieId;
     private Categorie searchCategorie;
-    
-    private List<Souscategorie> listAllSousCategories  = new ArrayList<>();
+
+    private List<Souscategorie> listAllSousCategories = new ArrayList<>();
     private Integer searchSouscategorieId;
 
     @Override
     public String execute() {
-        
+
         listRecherche = articleDAO.list();
-        
+
         listAllCategories = categorieDAO.list();
-        if(searchCategorie != null){
+        if (searchCategorie != null) {
             //listAllSousCategories.add(searchCategorie.getSouscategories()); 
             Set<Souscategorie> SetSousCategories = searchCategorie.getSouscategories();
-            for(Souscategorie souscategorie : SetSousCategories){
+            for (Souscategorie souscategorie : SetSousCategories) {
                 listAllSousCategories.add(souscategorie);
             }
         }
 
         return SUCCESS;
     }
-    public String AdvanceSearch(){
+
+    public String AdvanceSearch() {
         Set<Souscategorie> setSousCategories = null;
         listRecherche = articleDAO.AdvanceSearch(searchCategorieId);
         searchCategorie = categorieDAO.find(searchCategorieId);
-        if(searchCategorie != null){
+        if (searchCategorie != null) {
             //listAllSousCategories.add(searchCategorie.getSouscategories()); 
             setSousCategories = searchCategorie.getSouscategories();
-            for(Souscategorie souscategorie : setSousCategories){
+            for (Souscategorie souscategorie : setSousCategories) {
                 listAllSousCategories.add(souscategorie);
             }
         }
         System.out.println("hfusfhufihhgfdfhgudfghud");
         return SUCCESS;
     }
-    public String FinalSearch(){
+
+    public String FinalSearch() {
         listRecherche = articleDAO.FinalSearch(searchSouscategorieId);
         return SUCCESS;
     }
 
-    public String processSimpleSearch()throws Exception{
-        if(this.nom.trim().equals("")){
+    public String processSimpleSearch() throws Exception {
+        if (this.art.getNom().trim().equals("")) {
             listRecherche = articleDAO.list();
             listAllCategories = categorieDAO.list();
-        }else {
-            listRecherche = articleDAO.recherche(this.nom);
-            listAllCategories = categorieDAO.list();            
+        } else {
+            listRecherche = articleDAO.recherche(this.art.getNom());
+            listAllCategories = categorieDAO.list();
         }
         return SUCCESS;
     }
-    
-    public String getNom(){
-        return nom;
-    }
-    public void setNom(String nom){
-        this.nom = nom;
-    }
+
     public List<Article> getListRecherche() {
         return listRecherche;
     }
@@ -100,7 +95,7 @@ public class SearchAction extends ActionSupport implements Preparable{
     public void setListRecherche(List<Article> listRecherche) {
         this.listRecherche = listRecherche;
     }
-    
+
     public String getAction() {
         return action;
     }
@@ -108,6 +103,7 @@ public class SearchAction extends ActionSupport implements Preparable{
     public void setAction(String action) {
         this.action = action;
     }
+
     public Article getArt() {
         return art;
     }
@@ -115,9 +111,8 @@ public class SearchAction extends ActionSupport implements Preparable{
     public void setArt(Article art) {
         this.art = art;
     }
-        
-    //pour la recherche avance
 
+    //pour la recherche avance
     public List<Categorie> getListAllCategories() {
         return listAllCategories;
     }
@@ -133,7 +128,8 @@ public class SearchAction extends ActionSupport implements Preparable{
     public void setSearchCategorieId(Integer searchCategorieId) {
         this.searchCategorieId = searchCategorieId;
     }
-     public Categorie getSearchCategorie() {
+
+    public Categorie getSearchCategorie() {
         return searchCategorie;
     }
 

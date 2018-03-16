@@ -99,7 +99,7 @@
             <result name="success">pages/advanceSearch.jsp</result>
         </action>
         <action name="finalsearch" class="ca.uqac.archi.action.SearchAction" method="FinalSearch">  
-            <result name="success">pages/advanceSearch.jsp</result>
+            <result name="success">pages/search.jsp</result>
         </action>
         
         <!-- CRUD Article -->

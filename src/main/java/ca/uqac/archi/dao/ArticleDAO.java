@@ -123,7 +123,7 @@ public List<Article> recherche (String nomArticle){
          Session session = HibernateUtil.getSessionFactory().openSession();
          session.beginTransaction();
          Query query = session.createQuery(" from Article where nom like :nomArticle");
-         query.setParameter("nomArticle", nomArticle);
+         query.setParameter("nomArticle", "%" + nomArticle + "%");
          AllArticles = (List<Article>) query.list();
          System.err.println(AllArticles);
          System.err.println(query);

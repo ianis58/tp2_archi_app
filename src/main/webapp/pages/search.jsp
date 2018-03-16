@@ -11,12 +11,15 @@
         
         <div class="container body-content form-horizontal well">
             <h1>Recherche</h1>
+            <br>
             <h4>Entrez le nom d'un article</h4>
             <s:actionerror/>
-            <s:form action="processrecherche" method="post" style="align: center">
-                    <s:textfield name="nom" label="Nom"/>
-                    <s:submit value="Recherche" align="center"/>
+            <s:form action="processrecherche" method="post" style="form-inline">
+                    <s:textfield name="art.nom" label="Nom" />
+                    <s:submit value="Recherche" align="center" class="btn btn-success"/>
             </s:form>
+            <br>
+            <h4>Ou effectuez une recherche par catégorie</h4>
             <s:form action="advancesearch" method="post" style="align: center">
                 <s:select class="custom-select"
                           headerValue="Select"
@@ -26,10 +29,10 @@
                                     listValue="nom"
                                     required="true"
                                 />
-                <s:submit value="Recherche" align="center"/>
+                <s:submit value="Recherche" align="center" class="btn btn-success"/>
             </s:form>
-            
-            <table class="table table-sm table-hover table-bordered">
+            <br>
+            <table class="table table-striped table-sm">
                 <thead class="thead-light">
                     <tr>
                         <th scope="col">id</th>

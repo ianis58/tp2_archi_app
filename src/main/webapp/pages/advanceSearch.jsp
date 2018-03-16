@@ -10,7 +10,7 @@
         <%@ include file="template/nav.jsp" %>
         
         <div class="container body-content form-horizontal well">
-            <h1>Recherche</h1>  
+            <h1>Recherche Avancée</h1>  
             <s:form action="finalsearch" method="post" style="align: center">
                 <s:select class="custom-select"
                                     name="searchSouscategorieId"
@@ -19,7 +19,7 @@
                                     listValue="nom"
                                     required="true"
                                 />
-                <s:submit value="Recherche" align="center"/>
+                <s:submit value="Recherche" align="center" class="btn btn-success"/>
             </s:form>
             
             <table class="table table-sm table-hover table-bordered">
