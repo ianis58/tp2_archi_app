@@ -17,6 +17,9 @@
                 <li class='nav-item <s:if test="action == \"managesouscategories\"">active</s:if>'>
                     <a class="nav-link" href="managesouscategories">Sous catégories</a>
                 </li>
+                <li class='nav-item <s:if test="action == \"marqueCRUD\"">active</s:if>'>
+                    <a class="nav-link" href="marqueCRUD">Marques</a>
+                </li>
                 <li class='nav-item <s:if test="action == \"search\"">active</s:if>'>
                     <a class="nav-link" href="search">Recherches</a>
                 </li>
@@ -50,6 +53,9 @@
                 </li>
                 <li class='nav-item <s:if test="action == \"managesouscategories\"">active</s:if>'>
                     <a class="nav-link" href="managesouscategories">Sous catégories</a>
+                </li>
+                <li class='nav-item <s:if test="action == \"marqueCRUD\"">active</s:if>'>
+                    <a class="nav-link" href="marqueCRUD">Marques</a>
                 </li>
                 <li class='nav-item <s:if test="action == \"manageusers\"">active</s:if>'>
                     <a class="nav-link" href="manageusers">Utilisateurs</a>

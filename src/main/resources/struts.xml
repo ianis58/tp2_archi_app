@@ -93,6 +93,31 @@
             <result name="success">pages/categorieCRUD.jsp</result>
             <result name="input">pages/categorieCRUD.jsp</result> 
         </action> 
+        
+        <!-- Marque CRUD -->
+        <action name="marqueCRUD" class="ca.uqac.archi.action.MarqueAction">
+            <result>pages/marqueCRUD.jsp</result>
+        </action>
+        
+        <!-- Action list for marque -->
+        <action name="addMarque" class="ca.uqac.archi.action.MarqueAction" method="add">  
+            <result name="success">pages/marqueCRUD.jsp</result>
+            <result name="input">pages/marqueCRUD.jsp</result>
+        </action>
+
+        <action name="deleteMarque" method="delete" class="ca.uqac.archi.action.MarqueAction">
+            <result name="success">pages/marqueCRUD.jsp</result>
+        </action>
+
+        <action name="editMarqueLink" class="ca.uqac.archi.action.MarqueAction">  
+            <result name="success">pages/updateMarque.jsp</result>
+        </action>
+
+        <action name="updateMarque" class="ca.uqac.archi.action.MarqueAction" method="update">  
+            <result name="success">pages/marqueCRUD.jsp</result>
+            <result name="input">pages/marqueCRUD.jsp</result> 
+        </action> 
+        
         <!-- Categorie search -->
         <action name="search" class="ca.uqac.archi.action.SearchAction" method="execute">
             <result>pages/search.jsp</result>
