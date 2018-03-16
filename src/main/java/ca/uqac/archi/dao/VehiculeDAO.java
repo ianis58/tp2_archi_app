@@ -43,6 +43,7 @@ public class VehiculeDAO extends HibernateUtil{
      AllVeh = (List<Vehicule>) query.list();
      return AllVeh;
  }
+    
      public Vehicule findById(int id) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         String sql = " from Vehicule c where c.idVehicule=:id";

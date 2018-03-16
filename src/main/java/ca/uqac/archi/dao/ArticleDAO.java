@@ -10,6 +10,7 @@ import ca.uqac.archi.model.Categorie;
 import ca.uqac.archi.model.Employe;
 import ca.uqac.archi.model.Marque;
 import ca.uqac.archi.model.Souscategorie;
+import ca.uqac.archi.model.Vehicule;
 import ca.uqac.archi.util.HibernateUtil;
 import java.util.ArrayList;
 import java.util.List;
@@ -68,25 +69,7 @@ public class ArticleDAO extends HibernateUtil{
             session.flush();  
             session.close();  
     }       
-        
-      public void update(Categorie cat) {  
-        Session session = HibernateUtil.getSessionFactory().openSession();  
-        session.beginTransaction();  
-      //Categorie cat = (Categorie) session.load(Categorie.class, id);  
-        try {  
-        if(cat != null) {  
-            session.saveOrUpdate(cat);  
-        }  
-          
-        } catch (HibernateException e) {  
-            e.printStackTrace();  
-            session.getTransaction().rollback();  
-        }  
-            session.getTransaction().commit();        
-            session.flush();  
-            session.close();  
-      }        
-  
+    
  public List<Article> list()
  {
     List<Article> AllArticles = null;
@@ -98,26 +81,15 @@ public class ArticleDAO extends HibernateUtil{
      System.err.println(query);
      return AllArticles;
  }
- /*     
-public List<Article> list(){  
-     Session session = HibernateUtil.getSessionFactory().openSession();  
-          List<Article> DaoAllArticles = null;         
-        session.beginTransaction();       
-        try {                         
-               DaoAllArticles = session.createCriteria(Article.class).list();  
-                int count=DaoAllArticles.size();              
-        } catch (HibernateException e) {  
-            e.printStackTrace();  
-            session.getTransaction().rollback();  
-        }  
-                session.getTransaction().commit();  
-                session.flush();  
-                session.close();  
-        return DaoAllArticles;         
-          
-    } 
- */
  
+ public void update(Article art){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.update(art);
+        session.flush(); //le flush permet de prendre en compte les modifs dans la bdd immédiatement
+       session.close();
+    }
+
+
 public List<Article> recherche (String nomArticle){
         List<Article> AllArticles = null;
          Session session = HibernateUtil.getSessionFactory().openSession();
@@ -129,46 +101,10 @@ public List<Article> recherche (String nomArticle){
          System.err.println(query);
          return AllArticles;   
     
-    /*Session session = HibernateUtil.getSessionFactory().openSession();
-       Transaction transaction = null;
-       try {
-            transaction = session.beginTransaction();
-            Query query = session.createQuery(" FROM Article WHERE nom like :nomArticle");
-            query.setParameter("nomArticle", nomArticle);
-            List<Article> lstArticle = (List<Article>) query.list();
-            transaction.commit();
-            return lstArticle;
-       }catch(Exception e){
-           if(!(transaction == null)){
-               transaction.rollback();
-           }
-       }finally{
-           session.close();
-       }
-        
-      /* List article = session.createCriteria(Article.class)
-               .add(Restrictions.eq("nom", nom))
-               .list();*/
-       
-       //return null;
    }
+
 public List<Article> FinalSearch (Integer IdSouscategorie){
-       /*Session session = HibernateUtil.getSessionFactory().openSession();
-       Transaction transaction = null;
-       try {
-            transaction = session.beginTransaction();
-            Query query = session.createQuery("FROM Article WHERE idSousCategorie like :IdSouscategorie");
-            query.setParameter("IdSouscategorie", IdSouscategorie);
-            List<Article> lstArticle = (List<Article>) query.list();
-            transaction.commit();
-            return lstArticle;
-       }catch(Exception e){
-           if(!(transaction == null)){
-               transaction.rollback();
-           }
-       }finally{
-           session.close();
-       }*/
+       
         
        Souscategorie souscategorie = new SouscategorieDAO().find(IdSouscategorie);
        List<Article> lstArticle = new ArrayList<>();
@@ -180,7 +116,8 @@ public List<Article> FinalSearch (Integer IdSouscategorie){
        
        //return null;
    }
-    public List<Article> AdvanceSearch(Integer IdCategorie){
+  
+public List<Article> AdvanceSearch(Integer IdCategorie){
         System.out.println("qwerty");
         Categorie categorie = new CategorieDAO().find(IdCategorie);
         List<Article> lstArticle = new ArrayList<>();
@@ -190,5 +127,12 @@ public List<Article> FinalSearch (Integer IdSouscategorie){
         }
         System.out.println("123456789"+lstArticle.toString());
         return lstArticle;
+    }
+
+    public Article findById(int id) {
+         Session session = HibernateUtil.getSessionFactory().openSession();
+         Article art = (Article) session.get(Article.class, id);    
+        session.close();
+        return art;
     }
 }
