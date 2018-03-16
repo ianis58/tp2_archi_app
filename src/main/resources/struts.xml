@@ -23,12 +23,15 @@
 
         <!-- Users / Employés CRUD -->
         <action name="manageusers" class="ca.uqac.archi.action.ManageUsersAction">
-            <result>pages/manageusers.jsp</result>
+            <result name="success" >pages/manageusers.jsp</result>
+            <result name="noadmin"> pages/index.jsp</result>
         </action>
 
         <action name="addEmploye" class="ca.uqac.archi.action.ManageUsersAction" method="add">
+            <result name="noadmin"> pages/index.jsp</result>
             <result name="success" type="chain">manageusers</result>
             <result name="input" type="chain">manageusers</result>
+            
         </action>
 
         <action name="editEmployeLink" class="ca.uqac.archi.action.ManageUsersAction">
@@ -37,10 +40,12 @@
 
         <action name="updateEmploye" class="ca.uqac.archi.action.ManageUsersAction" method="update">
             <result name="success" type="chain">manageusers</result>
+            <result name="noadmin"> pages/index.jsp</result>
         </action>
 
         <action name="deleteEmploye" method="delete" class="ca.uqac.archi.action.ManageUsersAction">
             <result name="success" type="redirect">manageusers</result>
+            <result name="noadmin"> pages/index.jsp</result>
         </action>
         
         <!-- Sous catégories CRUD -->
