@@ -12,25 +12,41 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import freemarker.core.ParseException;
 import java.util.List;
+import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.struts2.ServletActionContext;
+import org.apache.struts2.interceptor.SessionAware;
 
 /**
  *
  * @author Ianis
  */
-public class ManageUsersAction extends ActionSupport {
+public class ManageUsersAction extends ActionSupport implements SessionAware {
     public static EmployeDAO employeDAO = new EmployeDAO();
     
     private int id = 0;
 
     private String action;
     private List<Employe> listEmployees;
+    private Map<String, Object> session;
 
+    public void setSession(Map<String, Object> session) {
+        this.session = session;
+    }
+
+    public Map<String, Object> getSession() {
+        return session;
+    }
     private Employe employe = new Employe();
 
     @Override
     public String execute() {
+        if(!(Boolean)session.get("admin"))
+        {
+             return "noadmin";
+             
+        }
+        
         if(id != 0){//si l'id est défini c'est qu'on est sur la page modifier user
             employe = employeDAO.find(id);
         }
@@ -44,11 +60,20 @@ public class ManageUsersAction extends ActionSupport {
     }
 
     public String add() throws ParseException {
-        try {
-            employeDAO.create(employe);
-        } catch (Exception e) {
-            e.printStackTrace();
+        if(!(Boolean)session.get("admin"))
+        {
+             return "noadmin";
+             
         }
+        
+          try {
+            employeDAO.create(employe);
+          } 
+          catch (Exception e) {
+            e.printStackTrace();
+            }
+        
+        
 
         listEmployees = this.getListEmployees();
         id = 0;
@@ -57,6 +82,11 @@ public class ManageUsersAction extends ActionSupport {
     }
 
     public String update() throws ParseException {
+        if(!(Boolean)session.get("admin"))
+        {
+             return "noadmin";
+             
+        }
         try {
             employeDAO.update(employe);
         } catch (Exception e) {
@@ -70,8 +100,15 @@ public class ManageUsersAction extends ActionSupport {
     }
     
     public String delete() {
+        
+        if(!(Boolean)session.get("admin"))
+        {
+             return "noadmin";
+             
+        }
         HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get( ServletActionContext.HTTP_REQUEST);
         id = Integer.parseInt(request.getParameter("id"));
+        
         try {
             employeDAO.delete(employeDAO.find(id));
         } catch (Exception e) {
@@ -116,4 +153,5 @@ public class ManageUsersAction extends ActionSupport {
     public void setId(int id) {
         this.id = id;
     }
+    
 }
